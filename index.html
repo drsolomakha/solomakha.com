@@ -3,166 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Соломаха Сергей Сергеевич — Гинеколог-хирург</title>
+    <title>Соломаха С.С. | Гинеколог-хирург, онколог</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        :root {
-            --accent: #007c89;
-            --text: #333;
-            --bg: #ffffff;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-
-        .header { text-align: center; padding: 20px 0; }
+        :root { --main: #00798C; --dark: #1D2A2D; --bg: #F8FAFA; --white: #ffffff; }
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); margin: 0; line-height: 1.6; padding-top: 70px; }
         
-        /* Главное фото во весь рост */
-        .avatar-full {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
+        nav { position: fixed; top: 0; width: 100%; background: var(--white); height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; box-shadow: 0 2px 15px rgba(0,121,140,0.08); z-index: 1000; }
+        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--main); font-weight: 600; }
+        .logo-img { height: 35px; }
+        
+        .menu-btn { cursor: pointer; display: flex; flex-direction: column; gap: 6px; padding: 10px; z-index: 1100; }
+        .menu-btn span { width: 28px; height: 2px; background: var(--main); border-radius: 2px; transition: 0.3s; }
+        
+        .nav-links { position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background: var(--white); display: flex; flex-direction: column; padding: 100px 40px; gap: 25px; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -10px 0 30px rgba(0,0,0,0.1); z-index: 1050; }
+        .nav-links.active { right: 0; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-size: 1.1rem; }
 
-        h1 { font-weight: 700; font-size: 1.8rem; margin: 10px 0; }
-        .description { font-size: 1rem; margin-bottom: 25px; color: #555; }
+        .container { max-width: 750px; margin: 0 auto; padding: 20px; }
+        
+        .hero { text-align: center; padding: 40px 0; }
+        .avatar { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 25px; border: 5px solid var(--white); box-shadow: 0 10px 25px rgba(0,121,140,0.15); }
+        .motto { letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; color: var(--main); font-weight: 600; margin-bottom: 15px; }
+        h1 { font-size: 2rem; margin: 0; color: var(--dark); font-weight: 600; }
+        
+        .hero-quote { color: #505e61; max-width: 600px; margin: 30px auto; text-align: center; line-height: 1.8; font-size: 1.05rem; }
+        
+        .btn-main { display: block; background: var(--main); color: var(--white); text-align: center; padding: 20px; border-radius: 14px; text-decoration: none; font-weight: 600; margin: 30px 0; transition: 0.4s; box-shadow: 0 8px 20px rgba(0,121,140,0.2); }
+        
+        .exp-list { list-style: none; padding: 0; margin: 30px 0; }
+        .exp-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; font-size: 1.05rem; }
+        .exp-item::before { content: '—'; color: var(--main); font-weight: bold; }
+        
+        .mission-box { background: var(--white); padding: 30px; border-radius: 18px; border-left: 5px solid var(--main); box-shadow: 0 5px 20px rgba(0,0,0,0.03); margin: 40px 0; }
 
-        /* Кнопки как на оригинальном сайте */
-        .links-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 35px; }
-        .link-btn {
-            display: block;
-            text-align: center;
-            padding: 16px;
-            background: #fff;
-            color: var(--text);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            border: 1px solid #e0e0e0;
-            transition: 0.3s;
-        }
-        .link-btn:hover { border-color: var(--accent); background: #f0fbfc; }
-        .btn-accent { background: var(--accent); color: #fff; border: none; }
-        .btn-accent:hover { background: #00636d; color: #fff; }
+        details { border-bottom: 1px solid #edf2f2; }
+        summary { padding: 20px 0; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; color: var(--dark); list-style: none; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; color: var(--main); font-size: 1.4rem; transition: 0.3s; }
+        details[open] summary::after { transform: rotate(45deg); }
+        .details-content { padding-bottom: 25px; font-size: 0.95rem; color: #505e61; }
 
-        /* Блок преимуществ */
-        .experience { background: #f4fbfc; padding: 25px; border-radius: 12px; margin-bottom: 30px; }
-        .exp-item { display: flex; margin-bottom: 10px; font-size: 0.95rem; }
-        .check { color: var(--accent); margin-right: 10px; font-weight: bold; }
+        .banner-img { width: 100%; border-radius: 18px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,121,140,0.1); }
 
-        /* Медицинские блоки */
-        .section-title { 
-            background: var(--accent); 
-            color: #fff; 
-            padding: 10px 15px; 
-            border-radius: 5px; 
-            margin: 35px 0 15px; 
-            font-size: 1.1rem; 
-            text-transform: uppercase;
-        }
-        .content-card { padding: 5px 0; margin-bottom: 20px; }
-        .content-card p { margin-bottom: 12px; }
-        .sub-check { color: var(--accent); font-weight: 700; }
-
-        /* Галерея дополнительных фото */
-        .photo-gallery { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
-        .gallery-img { width: 100%; border-radius: 10px; }
-
-        @media (max-width: 480px) {
-            h1 { font-size: 1.5rem; }
-        }
+        .carousel-container { overflow: hidden; position: relative; border-radius: 20px; margin: 30px 0; background: var(--white); padding: 15px; }
+        .carousel-track { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .carousel-item { min-width: 100%; display: flex; justify-content: center; }
+        .carousel-item img { max-width: 100%; height: auto; border-radius: 12px; max-height: 500px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        <img src="avatar.jpg" alt="Соломаха Сергей Сергеевич" class="avatar-full">
-        <h1>Соломаха Сергей Сергеевич</h1>
-        <p class="description">Гинеколог-хирург. Экспертная лапароскопия и онкогинекология</p>
+    <nav>
+        <a href="#" class="logo-box">
+            <img src="logo.png" alt="SM" class="logo-img">
+            <span>DR. SOLOMAKHA</span>
+        </a>
+        <div class="menu-btn" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="nav-links" id="navLinks">
+        <a href="#about" onclick="toggleMenu()">Об эксперте</a>
+        <a href="#services" onclick="toggleMenu()">Услуги</a>
+        <a href="#certs" onclick="toggleMenu()">Награды</a>
+        <a href="#second-opinion" onclick="toggleMenu()">Второе мнение</a>
+        <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/">Записаться</a>
     </div>
 
-    <div class="links-grid">
-        <a href="https://wa.me" class="link-btn btn-accent">Записаться на консультацию</a>
-        <a href="https://t.me" class="link-btn">Telegram канал</a>
-        <a href="https://instagram.com" class="link-btn">Instagram*</a>
-        <a href="https://taplink.cc" class="link-btn">Все контакты (Taplink)</a>
+    <div class="container">
+        <section class="hero" id="about">
+            <img src="avatar.jpg" alt="Соломаха Сергей Сергеевич" class="avatar">
+            <div class="motto">smart • safe • soft</div>
+            <h1>Соломаха<br>Сергей Сергеевич</h1>
+            <p style="color: var(--main); font-weight: 500; margin-top: 10px;">Хирург-гинеколог • Онколог • Санкт-Петербург</p>
+            
+            <div class="hero-quote">
+                <p>Выбор хирурга — сложная задача.</p>
+                <p>Моя задача — ваше спокойствие,<br>уверенность, эстетика и качество жизни.</p>
+                <p><b>Определенность в деталях.</b></p>
+                <p style="color: var(--main); font-weight: 600; margin-top: 20px;">Ваш хирург. Ваш результат.</p>
+            </div>
+        </section>
+
+        <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn-main">ЗАПИСАТЬСЯ НА ПРИЕМ</a>
+
+        <img src="bg.jpg" class="banner-img" alt="Surgery Background">
+
+        <ul class="exp-list">
+            <li class="exp-item">Более 18 лет оперирую в ведущих федеральных клиниках</li>
+            <li class="exp-item">Прохожу стажировки у признанных мировых экспертов</li>
+            <li class="exp-item">Заведую отделением в федеральной клинике, обучаю врачей</li>
+            <li class="exp-item">Специализируюсь на малотравматичных и органосохраняющих операциях</li>
+            <li class="exp-item">Применяю протоколы ускоренного восстановления (Fast Track)</li>
+        </ul>
+
+        <div class="mission-box">
+            <p><b>Безопасность в хирургии,</b></p>
+            <p>многокомпонентное обезболивание,</p>
+            <p>Ваше спокойствие перед операцией и полное понимание этапов лечения — <span style="color: var(--main); font-weight: 600;">моя главная цель.</span></p>
+        </div>
+
+        <section id="services">
+            <h3 style="text-align: center; margin: 50px 0 30px;">С чем ко мне обращаются:</h3>
+            <img src="operations.jpg" class="banner-img" style="margin-top: 0;" alt="Operations">
+            
+            <div class="card" style="background: var(--white); padding: 0 25px; border-radius: 18px;">
+                <details open>
+                    <summary>Эндометриоз</summary>
+                    <div class="details-content">
+                        Лапароскопическое иссечение очагов эндометриоза кишки и мочевого пузыря. Работа с инфильтратами любой сложности.
+                    </div>
+                </details>
+                <details>
+                    <summary>Миома матки</summary>
+                    <div class="details-content">
+                        Удаление узлов любого размера лапароскопически с сохранением матки и репродуктивной функции.
+                    </div>
+                </details>
+                <details>
+                    <summary>Кисты и опухоли яичников</summary>
+                    <div class="details-content">
+                        Бережное удаление с сохранением овариального резерва (запаса яйцеклеток).
+                    </div>
+                </details>
+                <details>
+                    <summary>Опущение и Недержание</summary>
+                    <div class="details-content">
+                        Коррекция выпадения матки. Использование регулируемых сетчатых имплантов для лечения недержания.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section id="certs">
+            <h3 style="text-align: center; margin-top: 50px;">Награды и признание</h3>
+            <div class="carousel-container">
+                <div class="carousel-track" id="track">
+                    <div class="carousel-item"><img src="award1.jpg" alt="Награда"></div>
+                    <div class="carousel-item"><img src="award2.jpg" alt="Грамота"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="second-opinion" style="background: linear-gradient(135deg, var(--main) 0%, #005f6e 100%); color: white; padding: 40px; border-radius: 20px; margin: 40px 0;">
+            <h4 style="margin-top: 0;">Нужно второе мнение?</h4>
+            <p>Если вам отказали в операции, не предложили альтернатив или вели себя нетактично — приходите за консультацией. Здоровье — Ваш главный ресурс!</p>
+            <a href="https://t.me/Solomakha_surgery" style="display: inline-block; background: white; color: var(--main); padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: 600; margin-top: 15px;">Написать в Telegram</a>
+        </section>
+
+        <div style="text-align: center; padding: 40px 0;">
+            <a href="https://t.me/ProSurgeryPts" style="color: var(--main); text-decoration: none; font-weight: 600;">Канал ProSurgery в Telegram →</a>
+        </div>
     </div>
 
-    <div class="experience">
-        <div class="exp-item"><span class="check">✔️</span> более 18 лет оперирую в ведущих федеральных и частных клиниках</div>
-        <div class="exp-item"><span class="check">✔️</span> прохожу стажировки у признанных мировых экспертов</div>
-        <div class="exp-item"><span class="check">✔️</span> следую новейшим международным протоколам лечения</div>
-        <div class="exp-item"><span class="check">✔️</span> заведую отделением в федеральной клинике, обучаю врачей</div>
-        <div class="exp-item"><span class="check">✔️</span> специализируюсь на малотравматичных операциях</div>
-        <div class="exp-item"><span class="check">✔️</span> сопровождаю Вас на всех этапах лечения</div>
-    </div>
-
-    <h2 style="text-align: center; color: var(--accent);">С чем ко мне обращаться</h2>
-
-    <div class="section-title">Эндометриоз</div>
-    <div class="content-card">
-        <p><span class="sub-check">✔️</span> Лапароскопическое удаление, иссечение очагов эндометриоза и эндометриоидных инфильтратов.</p>
-        <p>При лапароскопии хирург видит ткани и органы под большим (в 4−10 раз) увеличением. Поэтому можно увидеть и удалить даже небольшие и труднодоступные очаги эндометриоза.</p>
-        <p>Бережно и эффективно разделить сращения органов между собой, иссечь эндометриоз кишки и мочевого пузыря, не повредить сосуды, нервы и мочеточники.</p>
-        <p>Лапароскопия это малоинвазивный, то есть более щадящий для тканей и органов способ операции. Методики, которые использую позволяют удалить часть пораженной эндометриозом кишки через естественные отверстия без больших разрезов.</p>
-    </div>
-
-    <div class="section-title">Миома матки</div>
-    <div class="content-card">
-        <p><span class="sub-check">✔️</span> Лапароскопическая миомэктомия — удаление миоматозных узлов через небольшие 5−12 мм разрезы на животе.</p>
-        <p>Лапароскопически можно безопасно удалить даже большие (более 8 см) узлы. При крупных и множественных миомах временно пережимаю сосуды малого таза с целью уменьшения кровопотери во время операции.</p>
-        <p>Преимущества лапароскопии перед операциями через большой разрез – это более быстрый и легкий восстановительный период и гораздо менее выраженный болевой синдром, хороший косметический эффект.</p>
-        <p><span class="sub-check">✔️</span> Лапароскопическая экстирпация (удаление) матки.</p>
-        <p>Как правило эта операция выполняется рожавшим женщинам старшего возраста, не планирующим беременность. Можно безопасно удалить матку даже больших размеров (более 12−14 недель), с небольшой кровопотерей.</p>
-    </div>
-
-    <div class="section-title">Киста, опухоль яичника</div>
-    <div class="content-card">
-        <p><span class="sub-check">✔️</span> Лапароскопическое удаление кисты, опухоли яичника.</p>
-        <p>При удалении кисты применяю методики сохранения запаса яйцеклеток: использую современные кровоостанавливающие средства, не шью и применяю минимальную прицельную коагуляцию для остановки кровотечения.</p>
-    </div>
-
-    <div class="section-title">Несостоятельность рубца</div>
-    <div class="content-card">
-        <p><span class="sub-check">✔️</span> Комбинация лапароскопии с одномоментной гистероскопией, полное удаление рубцовой ткани и послойное ушивание раны на матке специальными нитями.</p>
-    </div>
-
-    <div class="section-title">Опущение органов МТ</div>
-    <div class="content-card">
-        <p><span class="sub-check">✔️</span> Лапароскопические операции при опущении и выпадение матки. Операции со стороны влагалища и в комбинации. Сложные и рецидивные случаи.</p>
-    </div>
-
-    <div class="section-title">Эстетическая гинекология</div>
-    <div class="content-card">
-        <p><span class="sub-check">✔️</span> Уменьшение емкости влагалища, пластика половых губ и капюшона клитора. Улучшение качества интимной жизни и психологический комфорт.</p>
-    </div>
-
-    <div class="section-title">Гистероскопия</div>
-    <div class="content-card">
-        <p><span class="sub-check">✔️</span> Полип, гиперплазия, миома, синехии. Гистероскопия без разрушения девственной плевы, удаление больших миоматозных узлов.</p>
-    </div>
-
-    <!-- Галерея дополнительных фото -->
-    <div class="photo-gallery">
-        <img src="photo1.jpg" alt="Рабочий процесс" class="gallery-img">
-        <img src="photo2.jpg" alt="Сергей Сергеевич Соломаха" class="gallery-img">
-        <img src="photo3.jpg" alt="Хирургия" class="gallery-img">
-    </div>
-
-    <p style="font-size: 0.8rem; color: #999; text-align: center; margin-top: 40px;">
-        *Instagram (соцсеть Meta) признана экстремистской в РФ.
-    </p>
-</div>
-
+    <script>
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+        let currentIdx = 0;
+        const track = document.getElementById('track');
+        const items = document.querySelectorAll('.carousel-item');
+        setInterval(() => {
+            if(items.length > 0) {
+                currentIdx = (currentIdx + 1) % items.length;
+                track.style.transform = `translateX(-${currentIdx * 100}%)`;
+            }
+        }, 5000);
+    </script>
 </body>
 </html>
