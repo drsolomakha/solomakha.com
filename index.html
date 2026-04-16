@@ -1,175 +1,34 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Соломаха С.С. | Гинеколог-хирург, онколог</title>
-    <link href="https://googleapis.com" rel="stylesheet">
-    <style>
-        :root { --main: #00798C; --dark: #1D2A2D; --bg: #F8FAFA; --white: #ffffff; }
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); margin: 0; line-height: 1.6; padding-top: 70px; }
-        
-        nav { position: fixed; top: 0; width: 100%; background: var(--white); height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; box-shadow: 0 2px 15px rgba(0,121,140,0.08); z-index: 1000; }
-        .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--main); font-weight: 600; }
-        .logo-img { height: 35px; }
-        
-        .menu-btn { cursor: pointer; display: flex; flex-direction: column; gap: 6px; padding: 10px; z-index: 1100; }
-        .menu-btn span { width: 28px; height: 2px; background: var(--main); border-radius: 2px; transition: 0.3s; }
-        
-        .nav-links { position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background: var(--white); display: flex; flex-direction: column; padding: 100px 40px; gap: 25px; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -10px 0 30px rgba(0,0,0,0.1); z-index: 1050; }
-        .nav-links.active { right: 0; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-size: 1.1rem; }
-
-        .container { max-width: 750px; margin: 0 auto; padding: 20px; }
-        
-        .hero { text-align: center; padding: 40px 0; }
-        .avatar { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 25px; border: 5px solid var(--white); box-shadow: 0 10px 25px rgba(0,121,140,0.15); }
-        .motto { letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; color: var(--main); font-weight: 600; margin-bottom: 15px; }
-        h1 { font-size: 2rem; margin: 0; color: var(--dark); font-weight: 600; }
-        
-        .hero-quote { color: #505e61; max-width: 600px; margin: 30px auto; text-align: center; line-height: 1.8; font-size: 1.05rem; }
-        
-        .btn-main { display: block; background: var(--main); color: var(--white); text-align: center; padding: 20px; border-radius: 14px; text-decoration: none; font-weight: 600; margin: 30px 0; transition: 0.4s; box-shadow: 0 8px 20px rgba(0,121,140,0.2); }
-        
-        .exp-list { list-style: none; padding: 0; margin: 30px 0; }
-        .exp-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; font-size: 1.05rem; }
-        .exp-item::before { content: '—'; color: var(--main); font-weight: bold; }
-        
-        .mission-box { background: var(--white); padding: 30px; border-radius: 18px; border-left: 5px solid var(--main); box-shadow: 0 5px 20px rgba(0,0,0,0.03); margin: 40px 0; }
-
-        details { border-bottom: 1px solid #edf2f2; }
-        summary { padding: 20px 0; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; color: var(--dark); list-style: none; }
-        summary::-webkit-details-marker { display: none; }
-        summary::after { content: '+'; color: var(--main); font-size: 1.4rem; transition: 0.3s; }
-        details[open] summary::after { transform: rotate(45deg); }
-        .details-content { padding-bottom: 25px; font-size: 0.95rem; color: #505e61; }
-
-        .banner-img { width: 100%; border-radius: 18px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,121,140,0.1); }
-
-        .carousel-container { overflow: hidden; position: relative; border-radius: 20px; margin: 30px 0; background: var(--white); padding: 15px; }
-        .carousel-track { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-        .carousel-item { min-width: 100%; display: flex; justify-content: center; }
-        .carousel-item img { max-width: 100%; height: auto; border-radius: 12px; max-height: 500px; }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <a href="#" class="logo-box">
-            <img src="logo.png" alt="SM" class="logo-img">
-            <span>DR. SOLOMAKHA</span>
-        </a>
-        <div class="menu-btn" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
-        </div>
-    </nav>
-
-    <div class="nav-links" id="navLinks">
-        <a href="#about" onclick="toggleMenu()">Об эксперте</a>
-        <a href="#services" onclick="toggleMenu()">Услуги</a>
-        <a href="#certs" onclick="toggleMenu()">Награды</a>
-        <a href="#second-opinion" onclick="toggleMenu()">Второе мнение</a>
-        <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/">Записаться</a>
+<nav>
+    <div class="brand-name">С.С. СОЛОМАХА</div>
+    <div class="nav-links">
+        <a href="#expert">Экспертиза</a>
+        <a href="#directions">Направления</a>
+        <a href="#consultation">Консультация</a>
     </div>
+</nav>
 
-    <div class="container">
-        <section class="hero" id="about">
-            <img src="avatar.jpg" alt="Соломаха Сергей Сергеевич" class="avatar">
-            <div class="motto">smart • safe • soft</div>
-            <h1>Соломаха<br>Сергей Сергеевич</h1>
-            <p style="color: var(--main); font-weight: 500; margin-top: 10px;">Хирург-гинеколог • Онколог • Санкт-Петербург</p>
-            
-            <div class="hero-quote">
-                <p>Выбор хирурга — сложная задача.</p>
-                <p>Моя задача — ваше спокойствие,<br>уверенность, эстетика и качество жизни.</p>
-                <p><b>Определенность в деталях.</b></p>
-                <p style="color: var(--main); font-weight: 600; margin-top: 20px;">Ваш хирург. Ваш результат.</p>
-            </div>
-        </section>
-
-        <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn-main">ЗАПИСАТЬСЯ НА ПРИЕМ</a>
-
-        <img src="bg.jpg" class="banner-img" alt="Surgery Background">
-
-        <ul class="exp-list">
-            <li class="exp-item">Более 18 лет оперирую в ведущих федеральных клиниках</li>
-            <li class="exp-item">Прохожу стажировки у признанных мировых экспертов</li>
-            <li class="exp-item">Заведую отделением в федеральной клинике, обучаю врачей</li>
-            <li class="exp-item">Специализируюсь на малотравматичных и органосохраняющих операциях</li>
-            <li class="exp-item">Применяю протоколы ускоренного восстановления (Fast Track)</li>
-        </ul>
-
-        <div class="mission-box">
-            <p><b>Безопасность в хирургии,</b></p>
-            <p>многокомпонентное обезболивание,</p>
-            <p>Ваше спокойствие перед операцией и полное понимание этапов лечения — <span style="color: var(--main); font-weight: 600;">моя главная цель.</span></p>
-        </div>
-
-        <section id="services">
-            <h3 style="text-align: center; margin: 50px 0 30px;">С чем ко мне обращаются:</h3>
-            <img src="operations.jpg" class="banner-img" style="margin-top: 0;" alt="Operations">
-            
-            <div class="card" style="background: var(--white); padding: 0 25px; border-radius: 18px;">
-                <details open>
-                    <summary>Эндометриоз</summary>
-                    <div class="details-content">
-                        Лапароскопическое иссечение очагов эндометриоза кишки и мочевого пузыря. Работа с инфильтратами любой сложности.
-                    </div>
-                </details>
-                <details>
-                    <summary>Миома матки</summary>
-                    <div class="details-content">
-                        Удаление узлов любого размера лапароскопически с сохранением матки и репродуктивной функции.
-                    </div>
-                </details>
-                <details>
-                    <summary>Кисты и опухоли яичников</summary>
-                    <div class="details-content">
-                        Бережное удаление с сохранением овариального резерва (запаса яйцеклеток).
-                    </div>
-                </details>
-                <details>
-                    <summary>Опущение и Недержание</summary>
-                    <div class="details-content">
-                        Коррекция выпадения матки. Использование регулируемых сетчатых имплантов для лечения недержания.
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <section id="certs">
-            <h3 style="text-align: center; margin-top: 50px;">Награды и признание</h3>
-            <div class="carousel-container">
-                <div class="carousel-track" id="track">
-                    <div class="carousel-item"><img src="award1.jpg" alt="Награда"></div>
-                    <div class="carousel-item"><img src="award2.jpg" alt="Грамота"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="second-opinion" style="background: linear-gradient(135deg, var(--main) 0%, #005f6e 100%); color: white; padding: 40px; border-radius: 20px; margin: 40px 0;">
-            <h4 style="margin-top: 0;">Нужно второе мнение?</h4>
-            <p>Если вам отказали в операции, не предложили альтернатив или вели себя нетактично — приходите за консультацией. Здоровье — Ваш главный ресурс!</p>
-            <a href="https://t.me/Solomakha_surgery" style="display: inline-block; background: white; color: var(--main); padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: 600; margin-top: 15px;">Написать в Telegram</a>
-        </section>
-
-        <div style="text-align: center; padding: 40px 0;">
-            <a href="https://t.me/ProSurgeryPts" style="color: var(--main); text-decoration: none; font-weight: 600;">Канал ProSurgery в Telegram →</a>
-        </div>
-    </div>
-
-    <script>
-        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
-        let currentIdx = 0;
-        const track = document.getElementById('track');
-        const items = document.querySelectorAll('.carousel-item');
-        setInterval(() => {
-            if(items.length > 0) {
-                currentIdx = (currentIdx + 1) % items.length;
-                track.style.transform = `translateX(-${currentIdx * 100}%)`;
-            }
-        }, 5000);
-    </script>
-</body>
-</html>
+<style>
+    /* Дополнение к стилям для текстового лого */
+    .brand-name {
+        font-family: 'Manrope', sans-serif;
+        font-weight: 700;
+        letter-spacing: 4px;
+        font-size: 1.1rem;
+        color: var(--text-dark);
+    }
+    
+    /* Стили для будущих кнопок онлайн-беседы */
+    .btn-secondary {
+        display: inline-block;
+        margin-top: 15px;
+        color: var(--brand-color);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-bottom: 1px solid var(--brand-color);
+        transition: 0.3s;
+    }
+    .btn-secondary:hover {
+        opacity: 0.7;
+    }
+</style>
