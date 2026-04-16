@@ -1,34 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сергей Соломаха | Гинеколог-хирург, Онколог</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-light: #f4f4f4;      /* Светло-серый фон (ваш выбор) */
+            --text-dark: #2d2d2d;     /* Антрацит (ваш выбор) */
+            --brand-color: #007c89;   /* Цвет из логотипа (ваш выбор) */
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Навигация */
+        nav {
+            padding: 30px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .brand-name {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            letter-spacing: 4px;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 45px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover {
+            color: var(--brand-color);
+            opacity: 1;
+        }
+
+        /* Главный экран (Hero) */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 140px 20px 80px;
+            text-align: center;
+        }
+
+        .avatar-container {
+            width: 340px;
+            height: 480px;
+            margin-bottom: 50px;
+            border-radius: 2px; /* Почти острые углы для строгости */
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.08);
+            background-color: #eee;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Плавное проявление при загрузке */
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(1.05); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .specialization {
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: #5a5a5a;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .philosophy {
+            font-size: 0.95rem;
+            text-transform: lowercase;
+            letter-spacing: 8px; /* Сильный акцент на деталях */
+            color: var(--brand-color);
+            font-weight: 600;
+            margin-bottom: 60px;
+            padding-left: 8px; /* Центровка из-за letter-spacing */
+        }
+
+        .appeal {
+            max-width: 650px;
+            margin: 0 auto 50px;
+            position: relative;
+        }
+
+        .appeal p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            font-weight: 300;
+            color: #444;
+        }
+
+        /* Кнопка записи */
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--brand-color);
+            color: var(--white);
+            padding: 22px 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-radius: 1px;
+            transition: var(--transition);
+            box-shadow: 0 15px 35px rgba(0, 124, 137, 0.15);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(0, 124, 137, 0.25);
+            background-color: #006a75;
+        }
+
+        /* Мобильная адаптация */
+        @media (max-width: 768px) {
+            nav { padding: 25px 5%; }
+            .nav-links { display: none; }
+            .brand-name { font-size: 0.9rem; letter-spacing: 2px; }
+            
+            h1 { font-size: 2rem; padding: 0 10px; }
+            .avatar-container { width: 290px; height: 400px; margin-bottom: 35px; }
+            .philosophy { letter-spacing: 4px; font-size: 0.85rem; margin-bottom: 40px; }
+            .appeal p { font-size: 1.1rem; line-height: 1.6; }
+            .btn-primary { padding: 18px 35px; width: 90%; }
+        }
+    </style>
+</head>
+<body>
+
 <nav>
-    <div class="brand-name">С.С. СОЛОМАХА</div>
+    <a href="/" class="brand-name">С.С. СОЛОМАХА</a>
     <div class="nav-links">
-        <a href="#expert">Экспертиза</a>
-        <a href="#directions">Направления</a>
-        <a href="#consultation">Консультация</a>
+        <a href="#about">Экспертиза</a>
+        <a href="#services">Направления</a>
+        <a href="https://t.me/ProSurgeryPts" target="_blank">Telegram</a>
+        <a href="#contact">Контакты</a>
     </div>
 </nav>
 
-<style>
-    /* Дополнение к стилям для текстового лого */
-    .brand-name {
-        font-family: 'Manrope', sans-serif;
-        font-weight: 700;
-        letter-spacing: 4px;
-        font-size: 1.1rem;
-        color: var(--text-dark);
-    }
+<section class="hero">
+    <div class="avatar-container">
+        <img src="avatar.jpg" alt="Сергей Сергеевич Соломаха - гинеколог-хирург">
+    </div>
+
+    <h1>Соломаха Сергей Сергеевич</h1>
+    <p class="specialization">гинеколог-хирург, онколог | Санкт-Петербург</p>
     
-    /* Стили для будущих кнопок онлайн-беседы */
-    .btn-secondary {
-        display: inline-block;
-        margin-top: 15px;
-        color: var(--brand-color);
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 600;
-        border-bottom: 1px solid var(--brand-color);
-        transition: 0.3s;
-    }
-    .btn-secondary:hover {
-        opacity: 0.7;
-    }
-</style>
+    <div class="philosophy">
+        smart • safe • soft
+    </div>
+
+    <div class="appeal">
+        <p>Выбор хирурга — сложная задача.<br>
+        Моя задача — ваше спокойствие, уверенность, эстетика и качество жизни. Определенность в деталях.</p>
+    </div>
+
+    <a href="#contact" class="btn-primary">Записаться на прием</a>
+</section>
+
+</body>
+</html>
