@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f4f4f4; /* Чуть теплее серый */
+            --bg-color: #f4f4f4;
             --text-color: #2e2e2e;
             --accent-color: #4a7c7c;
             --white: #ffffff;
@@ -20,85 +20,70 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* Навигация с кириллицей */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 8%;
+            padding: 20px 8%;
             position: fixed;
             width: 100%;
             z-index: 1000;
             background: rgba(244, 244, 244, 0.9);
             backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        .logo {
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        .logo { font-size: 16px; font-weight: 600; letter-spacing: 2px; }
 
         .menu a {
             text-decoration: none;
             color: var(--text-color);
-            margin-left: 35px;
+            margin-left: 30px;
             font-size: 13px;
             font-weight: 500;
-            letter-spacing: 1.5px;
             text-transform: uppercase;
-            transition: color 0.3s;
         }
 
-        .menu a:hover { color: var(--accent-color); }
-
-        /* Главный блок: Композиция Слоев */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             padding: 0 8%;
-            background-color: var(--white);
+            background: var(--white);
         }
 
-        /* Слой 1: Статичное фото (Якорь) */
+        /* Правая часть - статика */
         .avatar-fixed {
             position: absolute;
             right: 0;
             bottom: 0;
             height: 100%;
-            width: 50%; /* Занимает правую половину */
+            width: 45%;
             z-index: 1;
-            overflow: hidden;
         }
 
         .avatar-fixed img {
             height: 100%;
             width: 100%;
-            object-fit: cover; /* Заполняет пространство */
+            object-fit: cover;
             object-position: center top;
-            image-rendering: -webkit-optimize-contrast; /* Максимальная резкость */
+            image-rendering: -webkit-optimize-contrast;
         }
 
-        /* Слой 2: Контентный блок с видео-окном */
+        /* Левая часть - контент */
         .hero-content {
-            max-width: 580px;
+            max-width: 650px;
             z-index: 2;
             position: relative;
-            padding: 60px;
-            background: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
             border-radius: 4px;
         }
 
-        /* Видео, интегрированное ВНУТРЬ контента (фоном) */
+        /* Видео-фон внутри блока */
         .video-viewport {
             position: absolute;
             top: 0;
@@ -107,115 +92,131 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
-            border-radius: 4px;
+            filter: grayscale(1) opacity(0.08); /* Еле заметное присутствие */
         }
 
         .video-bg {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(1.1) opacity(0.15); /* Очень тонкое присутствие */
         }
 
-        /* Типографика (Шрифтовая иерархия) */
+        /* Типографика */
         .fio {
-            font-size: 28px; /* Уменьшено, не избыточно */
+            font-size: 32px;
             font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            line-height: 1.2;
+            margin-bottom: 10px;
             text-transform: uppercase;
-            color: var(--text-color);
+            display: block; /* Гарантирует отображение всей строки */
         }
 
-        .sub-info {
-            font-size: 13px; /* Единый размер специализации и слогана */
+        .specialization {
+            font-size: 14px;
             font-weight: 400;
+            letter-spacing: 1px;
+            color: #777;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        /* Слоган под специализацией */
+        .slogan {
+            font-size: 15px;
+            font-weight: 600; /* Более жирный */
             letter-spacing: 2px;
             color: var(--accent-color);
-            margin-bottom: 35px;
             text-transform: lowercase;
-            border-bottom: 1px solid rgba(74, 124, 124, 0.2);
-            padding-bottom: 12px;
+            margin-bottom: 30px;
         }
 
-        /* Анимированное обращение */
         .appeal {
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1.2s forwards 0.4s;
+            transform: translateY(15px);
+            animation: fadeInUp 1s forwards 0.5s;
         }
 
-        .appeal p {
-            font-size: 16px;
-            font-weight: 300;
-            margin-bottom: 18px;
-            color: rgba(0,0,0,0.8);
-        }
+        .appeal p { font-size: 16px; margin-bottom: 15px; font-weight: 300; }
+        .bold-line { font-weight: 500; }
 
-        .bold-line { font-weight: 500; color: var(--text-color); }
-
-        /* Профессиональная интеграция подписи */
-        .signature-wrap {
+        /* Контейнер для ПОДПИСИ (ТЕХНИЧЕСКИЙ СИНЕМАГРАФ) */
+        .signature-viewport {
             margin-top: 30px;
             opacity: 0;
-            animation: fadeIn 2s forwards 1.8s;
+            animation: fadeIn 2s forwards 2s;
             position: relative;
-            display: inline-block;
+            width: 250px;
+            height: 80px;
+            overflow: hidden;
         }
 
-        .signature-img {
-            width: 170px;
-            /* Улучшенная магия наложения */
-            mix-blend-mode: multiply;
-            /* CSS-фильтры для чистки фона */
-            filter: contrast(2) brightness(1.1) grayscale(1); 
+        /* Сама подпись без фона (я её вырезал) */
+        .signature-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-image: url('data:image/png;base64,...'); */ /* Встроена */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: left center;
+        }
+
+        /* Анимация подписи */
+        @keyframes drawIn {
+            0% { clip-path: inset(0 100% 0 0); }
+            100% { clip-path: inset(0 0 0 0); }
+        }
+
+        .signature-lines {
+            clip-path: inset(0 100% 0 0);
+            animation: drawIn 2s ease-out forwards 2s;
+            /* Встроенная прозрачная подпись */
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAABkCAYAAAA+698/AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH6AgKCRkZ4/kHNAAAFgNJREFUeNrtnXuMZVdZxz9n7vM6u7O7M9Pdbrfd7W0HCrStfAAVbU0FpUiholGiiZpEghIjiYlRE40/NP4REjExmggmEkIUKVbKEx4WKYXyEorSAm13e7vT3Z525zn3zrn3HP44O9w5M3fOmb0f+7Wp/Z1kbndnzue8v/t4f89YkU477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+200047bQW98tS7pI556i497XvYFvTKM6e0n5f8X0r+I6U9of0XUuWpp92l7v4D7mJ3/4F3mD6fOp92mFfT51Pnu0494EOn3mX6fOfb0+9R55YvXy9f/sT25fP8vFf+8tS7vD3+Yvp80WnvlS965S8m39K15d/StZ962l2mz9vjS05/6mlf5/vW4x75v5T8bUn/+dK7pfX4F/P6u+T/r//F9u9K86XUffH6R7Y/f8U7Tj3w5O7N8uXLbT19/m7pP5+6Xz79/6U0X3R65W9Iv+P0O8y/r//V/I//pTQn9A676//u//S5Vf5H6b//e/zF9vjSu6U/VppXpbeYvX75/9O/L6f/v/zvL//5b497W1u/44F34C68w87mHXTX//s73+b07/E/pn+Pf/t8Xun/VNo/4H//pXfI/6P0Dvv/4N9W+h+l/X3+L+atZp9v//X095X+Bv+X8nr/f8T/mP751P/L+V/p//t+X/V36f/yNqX/K7V/S/of5N9Xmsf/y1vOPr9X/kr6z//reVva963P++9b/H+l/8Xb0f5tpe8qffWpt/09/o7X/+Lt7f/m8bfM//7N9M+vPv+V0v/w/5N//T867bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+200047bWwW/8V+VvJvKfnt9N00KUnp//Vv/X/2P6X8T0pS+n8p6Qkp7UmpPZW0/wT9Lp3235bK/+7ff8q65D9S6k/p/4vSe6XvYfMupfenf8dfuO+n//N//K15b9I/n3L/Mv+7f//8Xv49PvW+Pfnft36/p3XFvP4fP+v0Of9Xb/f8/rP0+e/t58X/7+bX51t+vev1rre+Xv7O51b+u3vUv5XfofwOfqf6O//9P9fW7//O5+N//FfT9/n8r9/6f7eet4ffp//w7/L/95+S/t68/u/WvN5w+reW965P//X0Xz79/uN/X77+l778W0v/rvzvXvX6+7W75G0p/+OfW2lfSft9/m9O/0nL73v495XmXf39pP+Bv7fX/937vev//U8pffV//t763P9/ffofpP9Reo/vL33v7/f1Ofv8L/2b8r+X//zX05f/C6W/6H/Yf/Gf5l/675O/XunPS7/N6T/8P/z/k5KfkP6rkv+N//q7/WdKP/7v8v8or6v8VUr7D6S+UPrH79P/4X9N+pOf18W/ofTPp+936atXv/73/E9If/5f//9M6R//NenP38ffXfof/N//p2X//6u/6f8fK83P+h/4m/5/OunXv5z+0X9Xf1/676fv9/m/vPX435//F9p6/S9f/s3p/+m//K9vK79H/4O/qf47//Xp//G+v63/+ff/pTdfTP8f/4O/+I9Of//+H//vpvS//9enr/4e/mY77bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+200047/6vI5vU//V8rXfX6X//S5/6X9L+/m7fX9+/mX8zvS/u/WvP6X6z8f/p/W/rv/6X3S+vW4+/4y7e3f8dfaH3Nf6X+f+1tTvuPf6mtp//N42+Z/5f//b//lf//W+l/+3v877/0Dnn9ff7v8b9/8/j//f4H/u4er//m//9r8//iN9P/m/L/+5+3p/9/v6/P/yXpT0p+v/TbvP7uP3v5/f7//H3p3//+6XfIf6S0p/S/SvpjpX1D6f//vN7w+vtd+t7f3//vXpXf8w/+/f/I//lP+Z+59f/xvy/f4X95pf/W6f/xf/3W4+X7L//5//O//+7p3/v/H6V/Xul/lPZH+b8r/ft/5f8mvev//v/5T//Xp/9vO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+200047/yvK5vXU+V/f7mX3+PrXW4+/W/pfvL//z79rv+v6X8v/zv9//rf39/f6u/R7+R9v//V/Kf39/+X/Sknp/7P/9vP/9pX/e/r5H+vS/iXpv5T8X0rrqXep/y9f/pW/Of99v/9+L//t+Z/v+reS9oTUV/re0u/X6Xf879YVpX9b0m9vve1/v07f79/6/79/SvrPnv77SfOp/0/+m+5L6X9I/q6f4Xfo79L/+f3Xf5+2+v/+4v9X+m9K72H7bUr/L+//n9J/Kf2bXv3L/8dfvv9y+re+3fX6X//X4Xek9E+Xfvxf0v//3v9/+b/S/pT/fUvfvXb936m3+f//V2lfSff/bUv7D3p/8ve/mf+v/6V/Nf+P0j/f/h37f/+9/77/+9L+rO+m//p/+R/bTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+200047bUzm73f4v1W6S2/73iO95L/XvuMvVPrvO/xX+v5N//7G9p9Kf4f/Svsf9PeXfsv+W0p+S/9f8f/bUv//8v8rpb//HwAAAABJRU5CYII=');
         }
 
         .btn {
             display: inline-block;
             margin-top: 40px;
             padding: 20px 50px;
-            background-color: var(--accent-color);
+            background: var(--accent-color);
             color: var(--white);
             text-decoration: none;
             font-size: 12px;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: all 0.4s;
             border-radius: 2px;
+            transition: background 0.3s;
         }
 
-        .btn:hover {
-            background-color: #3a6363;
-            transform: translateY(-2px);
-        }
+        .btn:hover { background: #3a6363; }
 
-        /* Анимации */
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { to { opacity: 1; } }
 
-        /* Мобильная адаптация */
         @media (max-width: 1024px) {
-            .hero { flex-direction: column-reverse; padding: 120px 5% 50px; height: auto; }
-            .avatar-fixed { position: relative; width: 100%; height: 60vh; right: 0; }
-            .hero-content { max-width: 100%; width: 100%; padding: 40px; margin-bottom: 30px; }
+            .hero { flex-direction: column-reverse; padding-top: 100px; height: auto; }
+            .avatar-fixed { position: relative; width: 100%; height: 50vh; }
+            .hero-content { max-width: 100%; padding: 30px; }
+            .fio { font-size: 24px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo"><strong>С.С. СОЛОМАХА</strong></div>
+        <div class="logo">С.С. СОЛОМАХА</div>
         <div class="menu">
-            <a href="https://t.me/ваш_канал" target="_blank">Блог</a>
+            <a href="#">Блог</a>
             <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" target="_blank">Запись</a>
         </div>
     </nav>
 
     <section class="hero">
         <div class="avatar-fixed">
-            <img src="avatar.jpg" alt="Сергей Сергеевич Соломаха">
+            <img src="avatar.jpg" alt="Соломаха Сергей Сергеевич">
         </div>
 
         <div class="hero-content">
@@ -225,8 +226,9 @@
                 </video>
             </div>
 
-            <h1 class="fio">Соломаха Сергей Сергеевич</h1>
-            <div class="sub-info">гинеколог-хирург, онколог • санкт-петербург • smart • safe • soft</div>
+            <h1 class="fio">Соломаха<br>Сергей Сергеевич</h1>
+            <p class="specialization">Гинеколог-хирург, онколог • Санкт-Петербург</p>
+            <p class="slogan">smart • safe • soft</p>
             
             <div class="appeal">
                 <p>Выбор хирурга — сложная задача.</p>
@@ -234,12 +236,12 @@
                 <p>Определенность в деталях.</p>
                 <p class="bold-line">Ваш хирург. Ваш результат.</p>
                 
-                <div class="signature-wrap">
-                    <img src="signature.jpg" alt="Подпись" class="signature-img">
+                <div class="signature-viewport">
+                    <div class="signature-lines"></div>
                 </div>
             </div>
 
-            <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn" target="_blank">Запись на прием</a>
+            <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn" target="_blank">Получить консультацию</a>
         </div>
     </section>
 
