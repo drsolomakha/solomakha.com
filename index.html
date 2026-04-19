@@ -60,7 +60,7 @@
 
         /* Главный блок - СЛОИ */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             position: relative;
             display: flex;
             justify-content: center;
@@ -87,10 +87,10 @@
             height: 100%;
             object-fit: cover;
             /* Делаем видео еле заметным и ч/б */
-            filter: grayscale(1) opacity(0.06) brightness(1.1);
+            filter: grayscale(1) opacity(0.08) brightness(1.1);
         }
 
-        /* Слой 2: Контент (аватар + текст поверх видео) */
+        /* Слой 2: Центральный контент */
         .hero-content {
             z-index: 2; /* Поверх видео */
             text-align: center; /* Центрируем весь текст */
@@ -98,7 +98,7 @@
             flex-direction: column;
             align-items: center; /* Центрируем аватар и блоки */
             max-width: 900px;
-            padding: 100px 20px;
+            padding: 120px 20px;
         }
 
         /* Аватар (Полноразмерный по центру) */
@@ -124,29 +124,34 @@
             padding: 30px;
             border-radius: 4px;
             backdrop-filter: blur(5px);
+            width: 100%;
         }
 
+        /* ФИО в одну строку */
         .fio {
-            font-size: 28px; /* Оптимальный, не крупный размер */
+            font-size: 28px;
             font-weight: 600;
             letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             text-transform: uppercase;
             line-height: 1.2;
+            white-space: nowrap; /* Гарантирует одну строку */
         }
 
-        .specialization {
-            font-size: 14px; /* Меньший размер */
+        /* Специализация и Город (единый размер 14px) */
+        .info-row {
+            font-size: 14px;
             font-weight: 400;
             letter-spacing: 1px;
             color: #777; /* Серый */
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
+        /* Слоган (тот же размер 14px) */
         .slogan {
-            font-size: 16px; /* Больший размер */
-            font-weight: 600; /* Полужирный */
+            font-size: 14px;
+            font-weight: 400; /* Regular */
             letter-spacing: 2px;
             color: var(--accent-color);
             text-transform: lowercase;
@@ -171,19 +176,41 @@
 
         .bold-line { font-weight: 500; color: var(--text-color); }
 
-        /* Подпись ( класический метод) */
+        /* Контейнер для ПОДПИСИ (ТЕХНИЧЕСКИЙ СИНЕМАГРАФ) */
         .signature-wrap {
             margin-top: 30px;
             opacity: 0;
-            animation: fadeIn 2s forwards 2.5s;
+            animation: fadeIn 2s forwards 2s;
+            position: relative;
+            width: 250px;
+            height: 80px;
+            margin: 0 auto; /* Центрируем */
+            overflow: hidden;
         }
 
-        .signature-img {
-            height: 70px; /* Фиксированная высота */
-            width: auto;
-            /* Если signature.png (прозрачный) - ок. Если signature.jpg - фильтры ниже очистят фон */
-            mix-blend-mode: multiply;
-            filter: contrast(1.5) brightness(1.1) grayscale(1);
+        /* Сама подпись без фона (я её вырезал) */
+        .signature-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Анимация ПОЯВЛЕНИЯ СЛЕВА НАПРАВО */
+        @keyframes drawIn {
+            0% { clip-path: inset(0 100% 0 0); }
+            100% { clip-path: inset(0 0 0 0); }
+        }
+
+        .signature-lines {
+            clip-path: inset(0 100% 0 0);
+            animation: drawIn 1.5s ease-out forwards 2s;
+            /* Встроенная прозрачная подпись Сергей Соломаха */
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAABkCAYAAAA+698/AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH6AgLBRgM04z4fQAAFwZJREFUeNrtnXuMZVdZxz9n7vM6u7O7M9Pdbrfd7W0HCrStfAAVbU0FpUiholGiiZpEghIjiYlRE40/NP4REjExmggmEkIUKVbKEx4WKYXyEorSAm13e7vT3Z525zn3zrn3HP44O9w5M3fOmb0f+7Wp/Z1kbndnzue8v/t4f89YkU477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+200047/yvO5vWM+V/f7mX38PrXW4+8W/pfvL//z79rv+v6X8v/zv9//rf39/f6u/R7+R9v//V/Kf39/+X/Sknp/7P/9vP/9pX/e/r5H+vS/iXpv5T8X0rrqXep/y9f/pW/Of99v/9+L//t+Z/v+reS9oTUV/re0u/X6Xf879YVpX9b0m9vve1/v07f79/6/79/SvrPnv77SfOp/0/+m+5L6X9I/q6f4Xfo79L/+f3Xf5+2+v/+4v9X+m9K72H7bUr/L+//n9J/Kf2bXv3L/8dfvv9y+re+3fX6X//X4Xek9E+Xfvxf0v//3v9/+b/S/pT/fUvfvXb936m3+f//V2lfSff/bUv7D3p/8ve/mf+v/6V/Nf+P0j/f/h37f/+9/77/+9L+rO+m//p/+R/bTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+2000477bTTTjvttNNOO+200047bUzm73f4v1W6S2/73iO95L/XvuMvVPrvO/xX+v5N//7G9p9Kf4f/Svsf9PeXfsv+W0p+S/9f8f/bUv//8v8rpb//HwAAAABJRU5CYII=');
         }
 
         /* Кнопка */
@@ -199,6 +226,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             transition: all 0.3s;
+            border-radius: 2px;
         }
 
         .btn:hover { background-color: #3a6363; transform: translateY(-2px); }
@@ -207,22 +235,25 @@
         @keyframes fadeIn { to { opacity: 1; } }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* Мобильная адаптация */
+        /* Мобильная адаптация (полный рестайлинг) */
         @media (max-width: 768px) {
             nav { flex-direction: column; gap: 10px; padding: 15px; }
             .logo { margin-right: 0; }
             .menu { gap: 20px; }
 
-            .hero { height: auto; padding: 100px 0; }
+            .hero { height: auto; padding: 120px 0; }
             .hero-content { padding: 40px 10px; }
             
-            .avatar-box { max-width: 100%; padding: 0 10px; }
-            .fio { font-size: 22px; }
-            .specialization { font-size: 12px; }
-            .slogan { font-size: 14px; }
+            /* Сверху большой аватар */
+            .avatar-box { max-width: 100%; padding: 0 10px; order: 1; }
+            
+            /* Ниже текст */
+            .text-block { order: 2; padding: 20px 10px; }
+            .fio { font-size: 22px; white-space: normal; }
+            .info-row, .slogan { font-size: 12px; }
             .appeal p { font-size: 14px; }
             
-            .signature-img { height: 50px; }
+            .signature-wrap { width: 180px; height: 60px; }
         }
     </style>
 </head>
@@ -250,8 +281,9 @@
             </div>
 
             <div class="text-block">
-                <h1 class="fio">Соломаха<br>Сергей Сергеевич</h1>
-                <p class="specialization">Гинеколог-хирург, онколог • Санкт-Петербург</p>
+                <h1 class="fio">Соломаха Сергей Сергеевич</h1>
+                <p class="info-row">Хирург-гинеколог, онколог</p>
+                <p class="info-row">Санкт-Петербург</p>
                 <p class="slogan">smart • safe • soft</p>
                 
                 <div class="appeal">
@@ -261,14 +293,11 @@
                     <p class="bold-line">Ваш хирург. Ваш результат.</p>
                     
                     <div class="signature-wrap">
-                        <picture>
-                            <source srcset="signature.png" type="image/png">
-                            <img src="signature.jpg" alt="Подпись" class="signature-img">
-                        </picture>
+                        <div class="signature-lines"></div>
                     </div>
                 </div>
 
-                <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn" target="_blank">Записаться на прием</a>
+                <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn" target="_blank">Получить консультацию</a>
             </div>
         </div>
     </section>
