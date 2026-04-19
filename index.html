@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f7f7f7;
+            --bg-color: #f4f4f4; /* Чуть теплее серый */
             --text-color: #2e2e2e;
             --accent-color: #4a7c7c;
             --white: #ffffff;
@@ -23,106 +23,158 @@
             overflow-x: hidden;
         }
 
+        /* Навигация с кириллицей */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
+            padding: 25px 8%;
             position: fixed;
             width: 100%;
             z-index: 1000;
-            background: rgba(247, 247, 247, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(244, 244, 244, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .menu a {
             text-decoration: none;
             color: var(--text-color);
-            margin-left: 30px;
-            font-size: 14px;
+            margin-left: 35px;
+            font-size: 13px;
             font-weight: 500;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
         }
 
+        .menu a:hover { color: var(--accent-color); }
+
+        /* Главный блок: Композиция Слоев */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
-            overflow: hidden;
-            padding: 0 5%;
+            padding: 0 8%;
+            background-color: var(--white);
         }
 
-        .video-bg {
+        /* Слой 1: Статичное фото (Якорь) */
+        .avatar-fixed {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            width: 50%; /* Занимает правую половину */
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .avatar-fixed img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover; /* Заполняет пространство */
+            object-position: center top;
+            image-rendering: -webkit-optimize-contrast; /* Максимальная резкость */
+        }
+
+        /* Слой 2: Контентный блок с видео-окном */
+        .hero-content {
+            max-width: 580px;
+            z-index: 2;
+            position: relative;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+
+        /* Видео, интегрированное ВНУТРЬ контента (фоном) */
+        .video-viewport {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
             z-index: -1;
-            filter: brightness(0.8) contrast(1.1);
-        }
-
-        .hero-content {
-            max-width: 650px;
-            z-index: 2;
-            background: rgba(255, 255, 255, 0.7); /* Чуть больше читаемости для текста */
-            padding: 50px;
+            overflow: hidden;
             border-radius: 4px;
-            backdrop-filter: blur(8px);
         }
 
+        .video-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.1) opacity(0.15); /* Очень тонкое присутствие */
+        }
+
+        /* Типографика (Шрифтовая иерархия) */
         .fio {
-            font-size: 28px; /* Оптимальный размер, не избыточный */
+            font-size: 28px; /* Уменьшено, не избыточно */
             font-weight: 600;
             letter-spacing: 1px;
             margin-bottom: 8px;
             text-transform: uppercase;
+            color: var(--text-color);
         }
 
         .sub-info {
-            font-size: 13px; /* Специализация и слоган в одном размере */
+            font-size: 13px; /* Единый размер специализации и слогана */
             font-weight: 400;
             letter-spacing: 2px;
             color: var(--accent-color);
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             text-transform: lowercase;
             border-bottom: 1px solid rgba(74, 124, 124, 0.2);
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
 
+        /* Анимированное обращение */
         .appeal {
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 1.2s forwards 0.3s;
+            animation: fadeInUp 1.2s forwards 0.4s;
         }
 
         .appeal p {
             font-size: 16px;
             font-weight: 300;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
+            color: rgba(0,0,0,0.8);
         }
 
-        .bold-line { font-weight: 500; }
+        .bold-line { font-weight: 500; color: var(--text-color); }
 
-        /* Эффект для подписи на белом фоне */
+        /* Профессиональная интеграция подписи */
         .signature-wrap {
-            margin-top: 20px;
+            margin-top: 30px;
             opacity: 0;
-            animation: fadeIn 2s forwards 1.5s;
+            animation: fadeIn 2s forwards 1.8s;
+            position: relative;
+            display: inline-block;
         }
 
         .signature-img {
-            width: 180px;
-            mix-blend-mode: multiply; /* Убирает белый фон фотографии автоматически */
-            filter: contrast(1.2) brightness(0.9); /* Делает линии четче */
+            width: 170px;
+            /* Улучшенная магия наложения */
+            mix-blend-mode: multiply;
+            /* CSS-фильтры для чистки фона */
+            filter: contrast(2) brightness(1.1) grayscale(1); 
         }
 
         .btn {
             display: inline-block;
-            margin-top: 35px;
-            padding: 18px 45px;
+            margin-top: 40px;
+            padding: 20px 50px;
             background-color: var(--accent-color);
             color: var(--white);
             text-decoration: none;
@@ -130,27 +182,31 @@
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.4s;
+            border-radius: 2px;
         }
 
         .btn:hover {
+            background-color: #3a6363;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
+        /* Анимации */
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { to { opacity: 1; } }
 
-        @media (max-width: 768px) {
-            .hero-content { padding: 30px; margin: 0 auto; width: 90%; }
-            .fio { font-size: 22px; }
+        /* Мобильная адаптация */
+        @media (max-width: 1024px) {
+            .hero { flex-direction: column-reverse; padding: 120px 5% 50px; height: auto; }
+            .avatar-fixed { position: relative; width: 100%; height: 60vh; right: 0; }
+            .hero-content { max-width: 100%; width: 100%; padding: 40px; margin-bottom: 30px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo"><strong>DR. SOLOMAHA</strong></div>
+        <div class="logo"><strong>С.С. СОЛОМАХА</strong></div>
         <div class="menu">
             <a href="https://t.me/ваш_канал" target="_blank">Блог</a>
             <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" target="_blank">Запись</a>
@@ -158,11 +214,17 @@
     </nav>
 
     <section class="hero">
-        <video autoplay muted loop playsinline class="video-bg">
-            <source src="hero-video.mp4" type="video/mp4">
-        </video>
+        <div class="avatar-fixed">
+            <img src="avatar.jpg" alt="Сергей Сергеевич Соломаха">
+        </div>
 
         <div class="hero-content">
+            <div class="video-viewport">
+                <video autoplay muted loop playsinline class="video-bg">
+                    <source src="hero-video.mp4" type="video/mp4">
+                </video>
+            </div>
+
             <h1 class="fio">Соломаха Сергей Сергеевич</h1>
             <div class="sub-info">гинеколог-хирург, онколог • санкт-петербург • smart • safe • soft</div>
             
@@ -177,7 +239,7 @@
                 </div>
             </div>
 
-            <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn" target="_blank">Получить консультацию</a>
+            <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn" target="_blank">Запись на прием</a>
         </div>
     </section>
 
