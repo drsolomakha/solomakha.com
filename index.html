@@ -7,21 +7,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f0f0f0; 
+            --bg-color: #f2f2f2; 
             --text-color: #2e2e2e;
             --accent-color: #4a7c7c; 
             --white: #ffffff;
-            --font-family: 'Montserrat', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: var(--font-family);
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
+            line-height: 1.8;
+            text-align: center;
         }
 
         /* Навигация */
@@ -29,218 +28,214 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px 5%;
+            padding: 20px;
             position: fixed;
             width: 100%;
             z-index: 1000;
-            background: rgba(240, 240, 240, 0.9);
+            background: rgba(242, 242, 242, 0.9);
             backdrop-filter: blur(10px);
         }
 
-        .logo { font-size: 16px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-right: 40px; }
-        .menu { display: flex; gap: 30px; }
-        .menu a { text-decoration: none; color: var(--text-color); font-size: 13px; font-weight: 500; text-transform: uppercase; transition: color 0.3s; }
-        .menu a:hover { color: var(--accent-color); }
+        .logo { font-size: 15px; font-weight: 600; letter-spacing: 2px; margin-right: 35px; }
+        .menu a { text-decoration: none; color: var(--text-color); margin: 0 15px; font-size: 12px; font-weight: 500; text-transform: uppercase; }
 
-        /* Главный контейнер */
-        .hero {
-            min-height: 100vh;
+        .wrapper {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 100px 20px 40px 20px;
+            padding: 110px 20px 40px;
+            min-height: 100vh;
         }
 
-        /* Аватар */
-        .avatar-box {
+        /* Аватар - возвращаем размер */
+        .avatar-section {
             width: 100%;
-            text-align: center;
-            margin-bottom: -20px; /* Сдвигаем карточку чуть внахлест на фото */
-            z-index: 2;
+            max-width: 550px;
+            margin-bottom: 25px;
+        }
+
+        .avatar-section img {
+            width: 100%;
+            height: auto;
+            max-height: 50vh;
+            object-fit: contain;
             animation: fadeIn 1.5s forwards;
         }
 
-        .avatar-box img {
-            max-width: 100%;
-            width: 450px; /* Ограничиваем ширину, чтобы влезало на экран */
-            height: auto;
-            max-height: 45vh; /* Ограничиваем высоту для ноутбуков */
-            object-fit: contain;
-        }
-
-        /* Карточка с текстом (теперь ВИДЕО живет внутри неё) */
-        .text-block {
+        /* Карточка с видео внутри */
+        .main-card {
             position: relative;
-            background: rgba(255, 255, 255, 0.95); /* Почти белый фон карточки */
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             width: 100%;
-            max-width: 800px;
-            text-align: center;
-            overflow: hidden; /* Обрезает видео по краям карточки */
-            z-index: 3;
+            max-width: 850px;
+            background: var(--white);
+            border-radius: 6px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+            overflow: hidden;
+            padding: 55px 35px;
+            z-index: 2;
         }
 
-        /* Видео строго на заднем плане карточки */
-        .video-bg-card {
+        /* Видео строго в карточке за текстом */
+        .card-video {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0;
-            opacity: 0.12; /* Легкая видимость видео */
+            opacity: 0.12;
         }
-        
-        .video-bg-card video {
-            width: 100%; height: 100%;
+
+        .card-video video {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            filter: grayscale(1); /* Делаем ч/б, чтобы не спорило с дизайном */
+            /* Сдвигаем видео так, чтобы голову хирурга было видно */
+            object-position: center 15%; 
+            filter: grayscale(1);
         }
 
-        /* Контент внутри карточки (поверх видео) */
-        .content-layer {
-            position: relative;
-            z-index: 1;
-            padding: 50px 30px;
-        }
+        .card-content { position: relative; z-index: 1; }
 
-        /* ТИПОГРАФИКА */
+        /* Текстовые стили по вашим размерам */
         .fio {
-            font-size: 20px; /* Уменьшено по вашей просьбе */
+            font-size: 20px;
             font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
             text-transform: uppercase;
-        }
-
-        /* Одинаковый размер для специализации и слогана */
-        .info-row, .slogan {
-            font-size: 14px;
-            font-weight: 500;
             letter-spacing: 1px;
+            margin-bottom: 10px;
         }
 
-        .info-row {
-            color: #555;
-            margin-bottom: 5px;
+        .specialization {
+            font-size: 14px;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 8px;
+            white-space: nowrap; /* В одну строку на ПК */
         }
 
         .slogan {
+            font-size: 20px; /* Соразмерно ФИО */
+            font-weight: 500;
             color: var(--accent-color);
-            margin-bottom: 35px;
+            letter-spacing: 3px;
+            margin-bottom: 45px;
         }
 
-        /* Текст обращения */
         .appeal p {
-            font-size: 15px;
+            font-size: 16px;
+            margin-bottom: 18px;
             font-weight: 400;
-            line-height: 1.7; /* Единый интервал */
-            margin-bottom: 15px;
-            color: #333;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .bold-line { font-weight: 600 !important; }
-
-        /* ПОДПИСЬ - Запрашиваем файл напрямую */
-        .signature-wrap {
-            margin-top: 30px;
-            text-align: center;
+        /* Подпись с анимацией */
+        .sig-box {
+            margin: 35px auto 25px;
+            max-width: 220px;
         }
 
-        .signature-img {
-            height: 65px;
-            width: auto;
-            /* Анимация проявления слева направо */
+        .sig-box img {
+            width: 100%;
+            height: auto;
+            /* Убираем белый фон если файл signature.jpg */
+            mix-blend-mode: multiply; 
             clip-path: inset(0 100% 0 0);
-            animation: drawIn 1.5s ease-out forwards 1s;
+            animation: drawSign 2s ease-out forwards 1.5s;
         }
 
-        @keyframes drawIn {
-            0% { clip-path: inset(0 100% 0 0); }
-            100% { clip-path: inset(0 0 0 0); }
+        @keyframes drawSign {
+            to { clip-path: inset(0 0 0 0); }
         }
 
-        /* Кнопка */
         .btn {
             display: inline-block;
-            margin-top: 30px;
-            padding: 16px 40px;
-            background-color: var(--accent-color);
+            margin-top: 25px;
+            padding: 18px 45px;
+            background: var(--accent-color);
             color: var(--white);
             text-decoration: none;
             font-size: 12px;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            border-radius: 3px;
-            transition: all 0.3s;
+            border-radius: 2px;
+            transition: 0.3s;
         }
 
-        .btn:hover { background-color: #3a6363; transform: translateY(-2px); }
+        .btn:hover { background: #3a6363; }
 
-        @keyframes fadeIn { to { opacity: 1; } }
+        /* Футер */
+        .footer {
+            margin-top: 60px;
+            font-size: 10px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
 
-        /* Мобильная адаптация */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Мобильная версия */
         @media (max-width: 768px) {
-            nav { flex-direction: column; gap: 10px; padding: 15px; }
+            nav { flex-direction: column; gap: 8px; }
             .logo { margin-right: 0; }
-            .hero { padding-top: 120px; }
-            .avatar-box img { max-height: 35vh; }
-            .content-layer { padding: 35px 20px; }
-            .fio { font-size: 18px; }
-            .info-row, .slogan { font-size: 12px; }
+            .avatar-section img { max-height: 40vh; }
+            .specialization { white-space: normal; line-height: 1.4; } /* Перенос на две строки на мобильном */
+            .fio, .slogan { font-size: 18px; }
             .appeal p { font-size: 14px; }
-            .signature-img { height: 50px; }
+            .main-card { padding: 40px 20px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo"><strong>С.С. СОЛОМАХА</strong></div>
+        <div class="logo">С.С. СОЛОМАХА</div>
         <div class="menu">
-            <a href="#">Блог</a>
+            <a href="https://t.me/ProSurgeryPts" target="_blank">Блог</a>
             <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" target="_blank">Запись</a>
         </div>
     </nav>
 
-    <section class="hero">
-        
-        <div class="avatar-box">
+    <div class="wrapper">
+        <div class="avatar-section">
             <img src="avatar.jpg" alt="Сергей Сергеевич Соломаха">
         </div>
 
-        <div class="text-block">
-            
-            <div class="video-bg-card">
+        <div class="main-card">
+            <div class="card-video">
                 <video autoplay muted loop playsinline>
                     <source src="hero-video.mp4" type="video/mp4">
                 </video>
             </div>
 
-            <div class="content-layer">
+            <div class="card-content">
                 <h1 class="fio">Соломаха Сергей Сергеевич</h1>
-                <p class="info-row">Хирург-гинеколог, онколог, г. Санкт-Петербург</p>
+                <p class="specialization">Хирург-гинеколог, онколог, г. Санкт-Петербург</p>
                 <p class="slogan">smart • safe • soft</p>
-                
+
                 <div class="appeal">
                     <p>Выбор хирурга — сложная задача.</p>
-                    <p class="bold-line">
-                        Моя задача — ваше спокойствие, уверенность,<br>
+                    <p>
+                        Моя задача — ваше спокойствие, уверенность, <br>
                         эстетика и качество жизни.
                     </p>
-                    <p>Определенность в деталях.</p>
-                    <p class="bold-line">Ваш хирург. Ваш результат.</p>
-                    
-                    <div class="signature-wrap">
-                        <img src="signature.png" class="signature-img" alt="Подпись">
-                    </div>
+                    <p>Определенность в деталях. Ваш хирург. Ваш результат.</p>
                 </div>
 
-                <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn" target="_blank">Получить консультацию</a>
+                <div class="sig-box">
+                    <img src="signature.png" alt="Подпись" onerror="this.src='signature.jpg'">
+                </div>
+
+                <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn" target="_blank">Записаться на прием</a>
             </div>
         </div>
-        
-    </section>
+
+        <div class="footer">
+            Сайт в разработке <br>
+            © 2026 С.С. Соломаха. Все права защищены.
+        </div>
+    </div>
 
 </body>
 </html>
