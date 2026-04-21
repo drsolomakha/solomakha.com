@@ -7,11 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f5f5f7; /* Тот самый светло-серый Apple */
+            --bg-color: #f5f5f7; 
             --text-color: #1d1d1f;
             --accent-color: #4a7c7c; 
             --white: #ffffff;
-            --ios-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,44 +20,42 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* Навигация в стиле Glassmorphism */
+        /* Навигация Glassmorphism */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 50px;
+            padding: 15px 5%;
             position: fixed;
             top: 0; width: 100%;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(245, 245, 247, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         .logo { font-size: 13px; font-weight: 600; letter-spacing: 2px; }
-        .menu a { text-decoration: none; color: var(--text-color); margin-left: 25px; font-size: 11px; font-weight: 600; text-transform: uppercase; transition: opacity 0.3s; }
-        .menu a:hover { opacity: 0.6; }
+        .menu a { text-decoration: none; color: var(--text-color); margin-left: 25px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
 
-        /* Геометрия экрана */
         .hero {
             display: flex;
             height: 100vh;
             width: 100%;
-            align-items: center;
-            padding-top: 60px; /* Учет высоты меню */
+            align-items: stretch;
+            overflow: hidden;
         }
 
-        /* Текстовый блок */
+        /* Контентная часть (Лево) */
         .content-side {
-            flex: 1;
+            flex: 1.1;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 40px;
             z-index: 10;
+            position: relative;
         }
 
         .doctor-card {
@@ -66,66 +63,62 @@
             width: 100%;
             max-width: 560px;
             background: var(--white);
-            padding: 70px 60px;
-            border-radius: 20px; /* Скругление как у iPhone */
-            box-shadow: var(--ios-shadow);
+            padding: 60px 50px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
             text-align: center;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
 
-        /* Видео фон */
         .video-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
-            opacity: 0.1;
+            z-index: 0; opacity: 0.1;
         }
         .video-bg video { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
 
-        .inner-content { position: relative; z-index: 2; }
+        .inner { position: relative; z-index: 2; }
 
-        .fio { font-size: 24px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
-        .spec { font-size: 13px; color: #86868b; margin-bottom: 25px; }
+        .fio { font-size: 24px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .spec { font-size: 13px; color: #6e6e73; margin-bottom: 25px; letter-spacing: 1px; }
         
         .slogan { 
             font-size: 18px; 
             color: var(--accent-color); 
-            letter-spacing: 4px; 
-            margin: 25px 0; 
+            letter-spacing: 5px; 
+            margin: 30px 0; 
             text-transform: uppercase;
             font-weight: 500;
         }
 
-        .appeal { margin: 30px 0; font-size: 15px; font-weight: 400; color: #424245; }
-        .appeal p { margin-bottom: 8px; }
+        .appeal { margin-bottom: 20px; font-size: 15px; font-weight: 400; color: #333; }
+        .appeal p { margin-bottom: 12px; }
         
-        .accent-phrase { display: block; font-style: italic; margin: 15px 0 5px; color: #1d1d1f; }
+        .accent-text { display: block; font-style: italic; margin-top: 20px; color: #000; }
         .tagline { 
             display: block; 
             font-size: 11px; 
             text-transform: uppercase; 
             letter-spacing: 2px; 
             color: var(--accent-color);
+            margin: 5px 0 15px;
             font-weight: 600;
         }
 
         /* Подпись */
-        .signature { margin: 15px auto 25px; max-width: 110px; }
+        .signature { margin: 0 auto 25px; max-width: 130px; transition: transform 0.3s; }
         .signature img {
             width: 100%;
             mix-blend-mode: multiply; 
             clip-path: inset(0 100% 0 0);
-            animation: draw 2s ease-out forwards 1.5s;
+            animation: draw 2s ease-out forwards 1.2s;
         }
         @keyframes draw { to { clip-path: inset(0 0 0 0); } }
 
         /* Кнопка iPhone Style */
         .btn-iphone {
             display: inline-block;
-            padding: 16px 45px;
+            padding: 18px 45px;
             border: 1.5px solid var(--accent-color);
             background: transparent;
             color: var(--accent-color);
@@ -134,51 +127,60 @@
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            border-radius: 30px; /* Округлая форма */
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
+            border-radius: 40px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .btn-iphone:hover {
             background: var(--accent-color);
             color: var(--white);
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 10px 25px rgba(74, 124, 124, 0.3);
+            transform: scale(1.03) translateY(-3px);
+            box-shadow: 0 12px 24px rgba(74, 124, 124, 0.25);
         }
 
-        /* Фото блок */
-        .image-side {
-            flex: 1;
-            height: 100%;
-            display: flex;
-            align-items: flex-end; /* Чтобы фото "стояло" на нижнем крае */
-            justify-content: center;
-            overflow: hidden;
+        /* Фото часть (Право) */
+        .photo-side {
+            flex: 0.9;
+            position: relative;
             background: #e8e8ed;
         }
-        .image-side img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Cover лучше для премиальности, но... */
-            object-position: top center; /* ...фокусируемся на верхней части */
+        .photo-side img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center top;
         }
-
-        .footer-note {
+        
+        /* Градиент-маска для интеграции */
+        .photo-side::after {
+            content: '';
             position: absolute;
-            bottom: 25px; left: 50px;
-            font-size: 9px; color: #86868b; text-transform: uppercase;
+            left: 0; top: 0; width: 25%; height: 100%;
+            background: linear-gradient(to right, var(--bg-color), transparent);
         }
 
-        /* Мобильная версия */
+        /* Футер */
+        .footer-credits {
+            position: absolute;
+            bottom: 30px; left: 50px;
+            font-size: 10px; color: #86868b;
+            text-transform: uppercase; letter-spacing: 1px;
+            z-index: 20;
+        }
+
+        /* МОБИЛЬНАЯ ВЕРСИЯ */
         @media (max-width: 768px) {
             .hero { flex-direction: column; height: auto; padding-top: 60px; }
             nav { padding: 15px 20px; }
             
-            .image-side { width: 100%; height: 60vh; order: 1; }
-            .content-side { width: 100%; padding: 20px 15px; order: 2; margin-top: -50px; }
+            .photo-side { width: 100%; height: 65vh; order: 1; }
+            .photo-side::after { display: none; } /* Убираем градиент на мобилке */
             
-            .doctor-card { padding: 40px 25px; border-radius: 25px 25px 0 0; width: 100%; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); }
-            .fio { font-size: 20px; }
-            .footer-note { position: static; padding: 30px 0; text-align: center; width: 100%; }
+            .content-side { width: 100%; padding: 20px 10px; order: 2; margin-top: -60px; }
+            .doctor-card { padding: 45px 20px; border-radius: 30px 30px 0 0; width: 100%; box-shadow: none; }
+            
+            /* Увеличение подписи на мобильном */
+            .signature { max-width: 180px; margin: 10px auto 30px; }
+            
+            .footer-credits { position: static; padding: 40px 0; text-align: center; width: 100%; }
         }
     </style>
 </head>
@@ -201,7 +203,7 @@
                     </video>
                 </div>
 
-                <div class="inner-content">
+                <div class="inner">
                     <h1 class="fio">Соломаха Сергей Сергеевич</h1>
                     <p class="spec">Гинеколог-хирург, онколог | Санкт-Петербург</p>
                     
@@ -210,7 +212,7 @@
                     <div class="appeal">
                         <p>Выбор хирурга — сложная задача.</p>
                         <p>Моя задача — ваше спокойствие, уверенность, эстетика и качество жизни.</p>
-                        <span class="accent-phrase">Определенность в деталях.</span>
+                        <span class="accent-text">Определенность в деталях.</span>
                         <span class="tagline">Ваш хирург. Ваш результат.</span>
                     </div>
 
@@ -221,15 +223,15 @@
                     <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn-iphone" target="_blank">Записаться на прием</a>
                 </div>
             </div>
+            
+            <div class="footer-credits">
+                Сайт в разработке | © 2026 С.С. Соломаха. Все права защищены.
+            </div>
         </div>
 
-        <div class="image-side">
+        <div class="photo-side">
             <img src="avatar.jpg" alt="Сергей Сергеевич Соломаха">
         </div>
-    </div>
-
-    <div class="footer-note">
-        Сайт в разработке | © 2026 С.С. Соломаха
     </div>
 
 </body>
