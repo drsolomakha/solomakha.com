@@ -19,221 +19,187 @@
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.8;
-            text-align: center;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Навигация */
+        /* Навигация как в твоем коде */
         nav {
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
-            padding: 20px;
+            padding: 20px 50px;
             position: fixed;
             width: 100%;
             z-index: 1000;
-            background: rgba(242, 242, 242, 0.9);
+            background: rgba(242, 242, 242, 0.8);
             backdrop-filter: blur(10px);
         }
+        .logo-nav { position: absolute; left: 50px; font-size: 14px; font-weight: 600; letter-spacing: 2px; }
+        .menu a { text-decoration: none; color: var(--text-color); margin-left: 30px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        .logo { font-size: 15px; font-weight: 600; letter-spacing: 2px; margin-right: 35px; }
-        .menu a { text-decoration: none; color: var(--text-color); margin: 0 15px; font-size: 12px; font-weight: 500; text-transform: uppercase; }
-
-        .wrapper {
+        /* Контейнер на весь экран */
+        .hero-wrapper {
             display: flex;
-            flex-direction: column;
+            height: 100vh;
+            width: 100%;
+        }
+
+        /* Левая часть: Карточка с видео и текстом */
+        .content-side {
+            flex: 1;
+            display: flex;
             align-items: center;
-            padding: 110px 20px 40px;
-            min-height: 100vh;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
         }
 
-        /* Аватар - возвращаем размер */
-        .avatar-section {
-            width: 100%;
-            max-width: 550px;
-            margin-bottom: 25px;
-        }
-
-        .avatar-section img {
-            width: 100%;
-            height: auto;
-            max-height: 50vh;
-            object-fit: contain;
-            animation: fadeIn 1.5s forwards;
-        }
-
-        /* Карточка с видео внутри */
         .main-card {
             position: relative;
             width: 100%;
-            max-width: 850px;
+            max-width: 600px;
             background: var(--white);
-            border-radius: 6px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             overflow: hidden;
-            padding: 55px 35px;
+            padding: 50px 40px;
             z-index: 2;
+            text-align: center;
         }
 
-        /* Видео строго в карточке за текстом */
+        /* Видео внутри карточки */
         .card-video {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0;
             opacity: 0.12;
         }
-
         .card-video video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Сдвигаем видео так, чтобы голову хирурга было видно */
-            object-position: center 15%; 
             filter: grayscale(1);
         }
 
         .card-content { position: relative; z-index: 1; }
 
-        /* Текстовые стили по вашим размерам */
-        .fio {
-            font-size: 20px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
+        .fio { font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .specialization { font-size: 13px; color: #666; margin-bottom: 5px; }
+        .slogan { font-size: 18px; font-weight: 500; color: var(--accent-color); letter-spacing: 3px; margin: 25px 0; text-transform: uppercase; }
 
-        .specialization {
-            font-size: 14px;
-            font-weight: 400;
-            color: #666;
-            margin-bottom: 8px;
-            white-space: nowrap; /* В одну строку на ПК */
-        }
+        .appeal { font-size: 15px; margin-bottom: 20px; }
+        .appeal p { margin-bottom: 10px; }
 
-        .slogan {
-            font-size: 20px; /* Соразмерно ФИО */
-            font-weight: 500;
-            color: var(--accent-color);
-            letter-spacing: 3px;
-            margin-bottom: 45px;
-        }
-
-        .appeal p {
-            font-size: 16px;
-            margin-bottom: 18px;
-            font-weight: 400;
-            max-width: 720px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Подпись с анимацией */
-        .sig-box {
-            margin: 35px auto 25px;
-            max-width: 220px;
-        }
-
+        /* Подпись */
+        .sig-box { margin: 25px auto; max-width: 180px; }
         .sig-box img {
             width: 100%;
-            height: auto;
-            /* Убираем белый фон если файл signature.jpg */
             mix-blend-mode: multiply; 
             clip-path: inset(0 100% 0 0);
-            animation: drawSign 2s ease-out forwards 1.5s;
+            animation: drawSign 2s ease-out forwards 1s;
         }
-
-        @keyframes drawSign {
-            to { clip-path: inset(0 0 0 0); }
-        }
+        @keyframes drawSign { to { clip-path: inset(0 0 0 0); } }
 
         .btn {
             display: inline-block;
-            margin-top: 25px;
-            padding: 18px 45px;
+            padding: 16px 40px;
             background: var(--accent-color);
             color: var(--white);
             text-decoration: none;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            border-radius: 2px;
             transition: 0.3s;
         }
 
-        .btn:hover { background: #3a6363; }
+        /* Правая часть: Фото */
+        .image-side {
+            flex: 1;
+            background-color: #e6e6e6;
+            overflow: hidden;
+        }
+        .image-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
 
         /* Футер */
         .footer {
-            margin-top: 60px;
-            font-size: 10px;
+            position: absolute;
+            bottom: 20px;
+            left: 50px;
+            font-size: 9px;
             color: #aaa;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
+            z-index: 10;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Мобильная версия */
+        /* Мобильная адаптация */
         @media (max-width: 768px) {
-            nav { flex-direction: column; gap: 8px; }
-            .logo { margin-right: 0; }
-            .avatar-section img { max-height: 40vh; }
-            .specialization { white-space: normal; line-height: 1.4; } /* Перенос на две строки на мобильном */
-            .fio, .slogan { font-size: 18px; }
-            .appeal p { font-size: 14px; }
-            .main-card { padding: 40px 20px; }
+            .hero-wrapper { flex-direction: column; height: auto; }
+            nav { padding: 15px 20px; position: relative; background: var(--white); }
+            .logo-nav { position: static; font-size: 12px; }
+            
+            .image-side { width: 100%; height: 60vh; order: 1; }
+            .content-side { width: 100%; padding: 20px; order: 2; }
+            
+            .main-card { padding: 30px 20px; box-shadow: none; }
+            .footer { position: static; margin: 30px 0; text-align: center; width: 100%; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">С.С. СОЛОМАХА</div>
+        <div class="logo-nav">С.С. СОЛОМАХА</div>
         <div class="menu">
             <a href="https://t.me/ProSurgeryPts" target="_blank">Блог</a>
             <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" target="_blank">Запись</a>
         </div>
     </nav>
 
-    <div class="wrapper">
-        <div class="avatar-section">
+    <div class="hero-wrapper">
+        <div class="content-side">
+            <div class="main-card">
+                <div class="card-video">
+                    <video autoplay muted loop playsinline>
+                        <source src="hero-video.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="card-content">
+                    <h1 class="fio">Соломаха Сергей Сергеевич</h1>
+                    <p class="specialization">Хирург-гинеколог, онколог</p>
+                    <p class="specialization">г. Санкт-Петербург</p>
+                    
+                    <p class="slogan">smart • safe • soft</p>
+
+                    <div class="appeal">
+                        <p>Выбор хирурга — сложная задача.</p>
+                        <p>Моя задача — ваше спокойствие, уверенность, эстетика и качество жизни.</p>
+                        <p>Определенность в деталях. Ваш хирург. Ваш результат.</p>
+                    </div>
+
+                    <div class="sig-box">
+                        <img src="signature.png" alt="Подпись">
+                    </div>
+
+                    <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn" target="_blank">Записаться на прием</a>
+                </div>
+            </div>
+            
+            <div class="footer">
+                Сайт в разработке | © 2026 Все права защищены
+            </div>
+        </div>
+
+        <div class="image-side">
             <img src="avatar.jpg" alt="Сергей Сергеевич Соломаха">
-        </div>
-
-        <div class="main-card">
-            <div class="card-video">
-                <video autoplay muted loop playsinline>
-                    <source src="hero-video.mp4" type="video/mp4">
-                </video>
-            </div>
-
-            <div class="card-content">
-                <h1 class="fio">Соломаха Сергей Сергеевич</h1>
-                <p class="specialization">Хирург-гинеколог, онколог, г. Санкт-Петербург</p>
-                <p class="slogan">smart • safe • soft</p>
-
-                <div class="appeal">
-                    <p>Выбор хирурга — сложная задача.</p>
-                    <p>
-                        Моя задача — ваше спокойствие, уверенность, <br>
-                        эстетика и качество жизни.
-                    </p>
-                    <p>Определенность в деталях. Ваш хирург. Ваш результат.</p>
-                </div>
-
-                <div class="sig-box">
-                    <img src="signature.png" alt="Подпись" onerror="this.src='signature.jpg'">
-                </div>
-
-                <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn" target="_blank">Записаться на прием</a>
-            </div>
-        </div>
-
-        <div class="footer">
-            Сайт в разработке <br>
-            © 2026 С.С. Соломаха. Все права защищены.
         </div>
     </div>
 
