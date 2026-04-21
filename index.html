@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Соломаха Сергей Сергеевич | Гинеколог-хирург, онколог</title>
+    <title>Соломаха Сергей Сергеевич | Хирург-гинеколог, онколог</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,51 +19,53 @@
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
-        /* Навигация как в твоем коде */
+        /* Навигация — теперь изящная и дискретная */
         nav {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
+            padding: 25px 60px;
             position: fixed;
             width: 100%;
             z-index: 1000;
-            background: rgba(242, 242, 242, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(242, 242, 242, 0.4);
+            backdrop-filter: blur(5px);
         }
-        .logo-nav { position: absolute; left: 50px; font-size: 14px; font-weight: 600; letter-spacing: 2px; }
-        .menu a { text-decoration: none; color: var(--text-color); margin-left: 30px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Контейнер на весь экран */
-        .hero-wrapper {
+        .logo { font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+        .menu a { text-decoration: none; color: var(--text-color); margin-left: 30px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
+
+        /* Конструкция 50/50 */
+        .hero-split {
             display: flex;
             height: 100vh;
             width: 100%;
+            align-items: stretch;
         }
 
-        /* Левая часть: Карточка с видео и текстом */
+        /* Левая сторона: Текстовый блок */
         .content-side {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px;
-            position: relative;
+            padding: 60px;
+            background-color: var(--bg-color);
         }
 
         .main-card {
             position: relative;
             width: 100%;
-            max-width: 600px;
+            max-width: 580px;
             background: var(--white);
             border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
             overflow: hidden;
-            padding: 50px 40px;
+            padding: 60px 45px;
             z-index: 2;
             text-align: center;
         }
@@ -73,37 +75,47 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0;
-            opacity: 0.12;
+            opacity: 0.1;
         }
         .card-video video {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
             filter: grayscale(1);
         }
 
-        .card-content { position: relative; z-index: 1; }
+        .card-content { position: relative; z-index: 10; }
 
-        .fio { font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .specialization { font-size: 13px; color: #666; margin-bottom: 5px; }
-        .slogan { font-size: 18px; font-weight: 500; color: var(--accent-color); letter-spacing: 3px; margin: 25px 0; text-transform: uppercase; }
+        .fio { 
+            font-size: 22px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+        .specialization { font-size: 13px; color: #777; margin-bottom: 5px; font-weight: 400; }
+        .slogan { font-size: 20px; font-weight: 500; color: var(--accent-color); letter-spacing: 4px; margin: 35px 0; text-transform: uppercase; }
 
-        .appeal { font-size: 15px; margin-bottom: 20px; }
-        .appeal p { margin-bottom: 10px; }
+        .appeal { font-size: 15px; font-weight: 400; color: #444; line-height: 1.7; }
+        .appeal p { margin-bottom: 12px; }
+        .final-phrase { display: block; margin-top: 15px; font-weight: 500; }
 
-        /* Подпись */
-        .sig-box { margin: 25px auto; max-width: 180px; }
-        .sig-box img {
+        /* Подпись — масштаб и положение */
+        .sig-container { 
+            margin: 15px auto 30px; 
+            max-width: 140px; /* Уменьшили масштаб */
+        }
+        .sig-container img {
             width: 100%;
             mix-blend-mode: multiply; 
             clip-path: inset(0 100% 0 0);
-            animation: drawSign 2s ease-out forwards 1s;
+            animation: drawSign 2.5s ease-out forwards 1.2s;
         }
         @keyframes drawSign { to { clip-path: inset(0 0 0 0); } }
 
         .btn {
             display: inline-block;
-            padding: 16px 40px;
+            padding: 18px 50px;
             background: var(--accent-color);
             color: var(--white);
             text-decoration: none;
@@ -111,59 +123,67 @@
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: 0.3s;
+            border-radius: 2px;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .btn:hover { background: #3a6363; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(74, 124, 124, 0.3); }
 
-        /* Правая часть: Фото */
+        /* Правая сторона: Фото */
         .image-side {
             flex: 1;
-            background-color: #e6e6e6;
+            background-color: #e8e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
         }
         .image-side img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top;
+            object-position: center 20%; /* Фокус на лицо */
         }
 
-        /* Футер */
-        .footer {
+        /* Инфо-блок внизу */
+        .footer-info {
             position: absolute;
-            bottom: 20px;
-            left: 50px;
+            bottom: 30px;
+            left: 60px;
             font-size: 9px;
-            color: #aaa;
+            color: #999;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             z-index: 10;
         }
 
         /* Мобильная адаптация */
         @media (max-width: 768px) {
-            .hero-wrapper { flex-direction: column; height: auto; }
-            nav { padding: 15px 20px; position: relative; background: var(--white); }
-            .logo-nav { position: static; font-size: 12px; }
+            .hero-split { flex-direction: column; height: auto; }
+            nav { padding: 20px; background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; }
+            .logo { font-size: 12px; }
+            .menu a { margin-left: 15px; font-size: 10px; }
             
-            .image-side { width: 100%; height: 60vh; order: 1; }
-            .content-side { width: 100%; padding: 20px; order: 2; }
+            .image-side { width: 100%; height: 55vh; order: 1; }
+            .content-side { width: 100%; padding: 25px 15px; order: 2; }
             
-            .main-card { padding: 30px 20px; box-shadow: none; }
-            .footer { position: static; margin: 30px 0; text-align: center; width: 100%; }
+            .main-card { padding: 45px 25px; box-shadow: none; border-radius: 0; }
+            .fio { font-size: 18px; }
+            .slogan { font-size: 16px; margin: 25px 0; }
+            .footer-info { position: static; margin: 40px 0 20px; text-align: center; width: 100%; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-nav">С.С. СОЛОМАХА</div>
+        <div class="logo">С.С. СОЛОМАХА</div>
         <div class="menu">
             <a href="https://t.me/ProSurgeryPts" target="_blank">Блог</a>
             <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" target="_blank">Запись</a>
         </div>
     </nav>
 
-    <div class="hero-wrapper">
+    <div class="hero-split">
         <div class="content-side">
             <div class="main-card">
                 <div class="card-video">
@@ -182,10 +202,11 @@
                     <div class="appeal">
                         <p>Выбор хирурга — сложная задача.</p>
                         <p>Моя задача — ваше спокойствие, уверенность, эстетика и качество жизни.</p>
-                        <p>Определенность в деталях. Ваш хирург. Ваш результат.</p>
+                        <p>Определенность в деталях.</p>
+                        <span class="final-phrase">Ваш хирург. Ваш результат.</span>
                     </div>
 
-                    <div class="sig-box">
+                    <div class="sig-container">
                         <img src="signature.png" alt="Подпись">
                     </div>
 
@@ -193,8 +214,8 @@
                 </div>
             </div>
             
-            <div class="footer">
-                Сайт в разработке | © 2026 Все права защищены
+            <div class="footer-info">
+                Сайт в разработке | © 2026 С.С. Соломаха
             </div>
         </div>
 
