@@ -5,6 +5,7 @@
             <video autoplay muted loop playsinline class="hero-video-bg">
                 <source src="your-video.mp4" type="video/mp4">
             </video>
+            
             <div class="info-content">
                 <h1 class="fio">Соломаха<br>Сергей Сергеевич</h1>
                 <p class="specialization">гинеколог-хирург, онколог</p>
@@ -14,11 +15,11 @@
                     <span>smart</span> • <span>safe</span> • <span>soft</span>
                 </div>
                 
-                <div class="appeal-container">
-                    <p class="appeal-text">
-                        Хирург и оперативные вмешательства, которые он выполняет должны быть умными, безопасными и щадящими для пациента.
-                    </p>
-                    <img src="signature.png" alt="Подпись" class="signature-img">
+                <div class="appeal-box">
+                    <p class="appeal-text">Хирург и оперативные вмешательства, которые он выполняет должны быть умными, безопасными и щадящими для пациента.</p>
+                    <div class="signature-wrapper">
+                        <img src="signature.png" alt="Подпись" class="signature-animated">
+                    </div>
                 </div>
                 
                 <a href="#appointment" class="btn-primary">запись на прием</a>
@@ -26,34 +27,27 @@
         </div>
 
         <div class="hero-image-card">
-            <img src="avatar.jpg" alt="Сергей Сергеевич Соломаха" class="main-avatar">
+            <img src="avatar.jpg" alt="Сергей Сергеевич Соломаха" class="full-avatar">
         </div>
         
     </div>
 </section>
 
-<footer>
-    <div class="footer-content">
-        <p>Сайт находится в разработке © 2024 Все права защищены</p>
-    </div>
-</footer>
-
 <style>
-/* CSS ПРАВКИ */
 :root {
     --bg-light-gray: #f4f4f4;
     --text-anthracite: #2f2f2f;
-    --accent-main: #5b6d7e; /* Тот самый цвет из твоего файла */
+    --accent-main: #5b6d7e; /* Твой основной цвет */
 }
 
+/* Общая структура 50/50 */
 .hero-container {
     display: flex;
-    flex-direction: row;
     height: 100vh;
     width: 100%;
 }
 
-/* Левая карточка с видео-фоном */
+/* Левый блок */
 .hero-info-card {
     flex: 1;
     position: relative;
@@ -61,91 +55,94 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 60px;
+    padding: 5%;
 }
 
 .hero-video-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
     z-index: 1;
-    opacity: 0.4; /* Настраиваем прозрачность видео для читаемости текста */
 }
 
 .info-content {
     position: relative;
     z-index: 2;
-    max-width: 550px;
     color: var(--text-anthracite);
+    width: 100%;
 }
 
-.fio { font-size: 3.2rem; line-height: 1.1; margin-bottom: 10px; font-weight: 700; }
-.specialization { font-size: 1.3rem; margin-bottom: 5px; }
-.city { font-size: 1.2rem; margin-bottom: 25px; font-weight: 300; }
+.fio { font-size: clamp(2rem, 4vw, 3.5rem); text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
+.specialization { font-size: 1.2rem; opacity: 0.9; }
+.city { font-size: 1.1rem; margin-bottom: 30px; font-weight: 300; }
 
 .tagline {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2vw, 1.5rem);
     letter-spacing: 0.4em;
     text-transform: uppercase;
     margin: 30px 0;
     padding: 20px 0;
     border-top: 1px solid rgba(47, 47, 47, 0.2);
     border-bottom: 1px solid rgba(47, 47, 47, 0.2);
+    display: flex;
+    justify-content: space-between;
 }
 
-.appeal-container { margin-bottom: 40px; }
-.appeal-text { font-size: 1.15rem; line-height: 1.6; font-style: italic; margin-bottom: 15px; }
-.signature-img { height: 60px; filter: contrast(1.1); }
+.appeal-box { margin-bottom: 40px; position: relative; }
+.appeal-text { font-size: 1.1rem; line-height: 1.6; max-width: 90%; }
 
-/* Кнопка в оригинальном цвете */
+/* Анимация подписи слева направо */
+.signature-wrapper {
+    margin-top: 15px;
+    width: 180px; /* Масштаб подписи */
+}
+
+.signature-animated {
+    width: 100%;
+    height: auto;
+    display: block;
+    -webkit-mask-image: linear-gradient(to right, black 0%, black 0%);
+    mask-image: linear-gradient(to right, black 0%, black 0%);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    animation: drawSignature 3s forwards ease-in-out;
+}
+
+@keyframes drawSignature {
+    0% { -webkit-mask-size: 0% 100%; mask-size: 0% 100%; }
+    100% { -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+}
+
+/* Кнопка */
 .btn-primary {
     display: inline-block;
-    padding: 20px 45px;
+    padding: 18px 40px;
     background-color: var(--accent-main);
     color: white;
-    text-transform: lowercase; /* Как в твоем запросе */
     text-decoration: none;
     font-weight: 500;
     transition: 0.3s ease;
 }
 
-/* Правая карточка */
+/* Правый блок: Фото */
 .hero-image-card {
     flex: 1;
-    background-color: #e2e2e2;
+    overflow: hidden;
+    background-color: #e8e8e8;
 }
 
-.main-avatar {
+.full-avatar {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
-/* МОБИЛЬНАЯ ВЕРСИЯ: Аватар вверху, текст под ним */
+/* Мобильная адаптация */
 @media (max-width: 768px) {
     .hero-container { flex-direction: column; height: auto; }
-    
-    .hero-image-card {
-        width: 100%;
-        height: 50vh; /* Аватар на половину экрана сверху */
-    }
-    
-    .hero-info-card {
-        width: 100%;
-        padding: 40px 20px;
-    }
-    
+    .hero-image-card { width: 100%; height: 60vh; order: 1; }
+    .hero-info-card { width: 100%; padding: 40px 20px; order: 2; }
     .fio { font-size: 2.2rem; }
-}
-
-footer {
-    padding: 20px;
-    text-align: center;
-    background: var(--bg-light-gray);
-    font-size: 0.9rem;
-    color: #888;
 }
 </style>
