@@ -7,10 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f4f4f4; 
-            --text-color: #2e2e2e;
+            --bg-color: #f5f5f7; /* Тот самый светло-серый Apple */
+            --text-color: #1d1d1f;
             --accent-color: #4a7c7c; 
             --white: #ffffff;
+            --ios-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,155 +20,165 @@
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Чистая навигация */
+        /* Навигация в стиле Glassmorphism */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            position: absolute;
+            padding: 15px 50px;
+            position: fixed;
             top: 0; width: 100%;
-            z-index: 100;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         .logo { font-size: 13px; font-weight: 600; letter-spacing: 2px; }
-        .menu a { text-decoration: none; color: var(--text-color); margin-left: 25px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+        .menu a { text-decoration: none; color: var(--text-color); margin-left: 25px; font-size: 11px; font-weight: 600; text-transform: uppercase; transition: opacity 0.3s; }
+        .menu a:hover { opacity: 0.6; }
 
-        /* Главный экран */
+        /* Геометрия экрана */
         .hero {
             display: flex;
             height: 100vh;
             width: 100%;
-            align-items: stretch;
+            align-items: center;
+            padding-top: 60px; /* Учет высоты меню */
         }
 
-        /* Левая часть: Контент */
-        .content-part {
+        /* Текстовый блок */
+        .content-side {
             flex: 1;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             padding: 40px;
-            z-index: 2;
+            z-index: 10;
         }
 
         .doctor-card {
             position: relative;
             width: 100%;
-            max-width: 580px;
+            max-width: 560px;
             background: var(--white);
-            padding: 60px 50px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            padding: 70px 60px;
+            border-radius: 20px; /* Скругление как у iPhone */
+            box-shadow: var(--ios-shadow);
             text-align: center;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        /* Видео строго как фон карточки */
+        /* Видео фон */
         .video-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0;
-            opacity: 0.12;
+            opacity: 0.1;
         }
         .video-bg video { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
 
         .inner-content { position: relative; z-index: 2; }
 
-        .fio { font-size: 24px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-        .spec { font-size: 13px; color: #777; margin-bottom: 30px; letter-spacing: 1px; }
+        .fio { font-size: 24px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+        .spec { font-size: 13px; color: #86868b; margin-bottom: 25px; }
         
         .slogan { 
             font-size: 18px; 
             color: var(--accent-color); 
-            letter-spacing: 5px; 
-            margin: 30px 0; 
-            text-transform: uppercase; 
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            padding: 15px 0;
+            letter-spacing: 4px; 
+            margin: 25px 0; 
+            text-transform: uppercase;
+            font-weight: 500;
         }
 
-        .appeal { margin-top: 35px; font-size: 15px; font-weight: 400; line-height: 1.7; }
-        .appeal p { margin-bottom: 10px; }
+        .appeal { margin: 30px 0; font-size: 15px; font-weight: 400; color: #424245; }
+        .appeal p { margin-bottom: 8px; }
         
-        .accent-line { display: block; font-style: italic; margin: 20px 0 5px; color: #111; }
-        .footer-tagline { 
+        .accent-phrase { display: block; font-style: italic; margin: 15px 0 5px; color: #1d1d1f; }
+        .tagline { 
             display: block; 
-            font-size: 12px; 
+            font-size: 11px; 
             text-transform: uppercase; 
             letter-spacing: 2px; 
             color: var(--accent-color);
-            margin-bottom: 15px;
             font-weight: 600;
         }
 
-        /* Подпись — теперь ближе */
-        .signature { margin: 0 auto 30px; max-width: 140px; }
+        /* Подпись */
+        .signature { margin: 15px auto 25px; max-width: 110px; }
         .signature img {
             width: 100%;
             mix-blend-mode: multiply; 
             clip-path: inset(0 100% 0 0);
-            animation: draw 2.5s ease-out forwards 1.5s;
+            animation: draw 2s ease-out forwards 1.5s;
         }
         @keyframes draw { to { clip-path: inset(0 0 0 0); } }
 
-        .btn-call {
+        /* Кнопка iPhone Style */
+        .btn-iphone {
             display: inline-block;
-            padding: 18px 50px;
-            background: var(--accent-color);
-            color: #fff;
+            padding: 16px 45px;
+            border: 1.5px solid var(--accent-color);
+            background: transparent;
+            color: var(--accent-color);
             text-decoration: none;
             font-size: 11px;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: 0.3s;
+            border-radius: 30px; /* Округлая форма */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .btn-iphone:hover {
+            background: var(--accent-color);
+            color: var(--white);
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 10px 25px rgba(74, 124, 124, 0.3);
         }
 
-        /* Правая часть: Фото */
-        .photo-part {
+        /* Фото блок */
+        .image-side {
             flex: 1;
-            position: relative;
-            background: #e0e0e0;
+            height: 100%;
+            display: flex;
+            align-items: flex-end; /* Чтобы фото "стояло" на нижнем крае */
+            justify-content: center;
+            overflow: hidden;
+            background: #e8e8ed;
         }
-        .photo-part img {
+        .image-side img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center top;
-        }
-        
-        /* Тот самый "дизайнерский" переход для интеграции */
-        .photo-part::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; width: 150px; height: 100%;
-            background: linear-gradient(to right, var(--bg-color), transparent);
-            z-index: 1;
+            object-fit: cover; /* Cover лучше для премиальности, но... */
+            object-position: top center; /* ...фокусируемся на верхней части */
         }
 
-        .dev-footer {
+        .footer-note {
             position: absolute;
-            bottom: 30px; left: 5%;
-            font-size: 9px; color: #999; text-transform: uppercase;
+            bottom: 25px; left: 50px;
+            font-size: 9px; color: #86868b; text-transform: uppercase;
         }
 
-        /* МОБИЛЬНАЯ ВЕРСИЯ */
+        /* Мобильная версия */
         @media (max-width: 768px) {
-            .hero { flex-direction: column; height: auto; }
-            nav { position: relative; padding: 20px; background: #fff; }
-            .menu { display: flex; gap: 15px; }
-            .menu a { margin: 0; font-size: 10px; }
+            .hero { flex-direction: column; height: auto; padding-top: 60px; }
+            nav { padding: 15px 20px; }
             
-            .photo-part { width: 100%; height: 60vh; order: 1; }
-            .photo-part::before { display: none; }
+            .image-side { width: 100%; height: 60vh; order: 1; }
+            .content-side { width: 100%; padding: 20px 15px; order: 2; margin-top: -50px; }
             
-            .content-part { width: 100%; padding: 0; order: 2; margin-top: -40px; }
-            .doctor-card { padding: 40px 20px; box-shadow: none; border-radius: 0; width: 100%; }
+            .doctor-card { padding: 40px 25px; border-radius: 25px 25px 0 0; width: 100%; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); }
             .fio { font-size: 20px; }
-            .dev-footer { position: static; padding: 40px 0; text-align: center; width: 100%; }
+            .footer-note { position: static; padding: 30px 0; text-align: center; width: 100%; }
         }
     </style>
 </head>
@@ -182,7 +193,7 @@
     </nav>
 
     <div class="hero">
-        <div class="content-part">
+        <div class="content-side">
             <div class="doctor-card">
                 <div class="video-bg">
                     <video autoplay muted loop playsinline preload="auto">
@@ -199,25 +210,25 @@
                     <div class="appeal">
                         <p>Выбор хирурга — сложная задача.</p>
                         <p>Моя задача — ваше спокойствие, уверенность, эстетика и качество жизни.</p>
-                        <span class="accent-line">Определенность в деталях.</span>
-                        <span class="footer-tagline">Ваш хирург. Ваш результат.</span>
+                        <span class="accent-phrase">Определенность в деталях.</span>
+                        <span class="tagline">Ваш хирург. Ваш результат.</span>
                     </div>
 
                     <div class="signature">
                         <img src="signature.png" alt="Подпись">
                     </div>
 
-                    <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn-call" target="_blank">Записаться на прием</a>
+                    <a href="https://prodoctorov.ru/spb/vrach/88335-solomaha/" class="btn-iphone" target="_blank">Записаться на прием</a>
                 </div>
             </div>
         </div>
 
-        <div class="photo-part">
+        <div class="image-side">
             <img src="avatar.jpg" alt="Сергей Сергеевич Соломаха">
         </div>
     </div>
 
-    <div class="dev-footer">
+    <div class="footer-note">
         Сайт в разработке | © 2026 С.С. Соломаха
     </div>
 
