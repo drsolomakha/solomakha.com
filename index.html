@@ -1,25 +1,198 @@
-<section class="hero-section">
-    <div class="hero-container">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Соломаха Сергей Сергеевич | Гинеколог-хирург</title>
+    <style>
+        :root {
+            --bg-light-gray: #f4f4f4;
+            --text-anthracite: #2f2f2f;
+            --accent-main: #5b6d7e; /* Основной цвет из приложенного файла */
+        }
+
+        body, html { margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg-light-gray); color: var(--text-anthracite); }
+
+        /* Шапка и Меню */
+        header {
+            position: absolute;
+            top: 0; width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px 50px;
+            box-sizing: border-box;
+        }
+
+        nav a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: var(--text-anthracite);
+            text-transform: lowercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Главный блок */
+        .hero-section {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Левая карточка: Текст и Видео */
+        .hero-info-card {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        .info-content {
+            position: relative;
+            z-index: 10;
+            max-width: 550px;
+        }
+
+        .fio { font-size: 3rem; text-transform: uppercase; line-height: 1.1; margin: 0; }
+        .spec-city { font-size: 1.2rem; margin-top: 10px; font-weight: 300; }
         
+        .tagline {
+            font-size: 1.4rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            margin: 40px 0;
+            padding: 20px 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Обращение с сохранением строк */
+        .appeal-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            white-space: pre-line; /* Сохраняет переносы строк */
+        }
+
+        .signature-wrapper {
+            margin-bottom: 40px;
+            width: 150px;
+        }
+
+        .signature-animated {
+            width: 100%;
+            mask-image: linear-gradient(to right, black 0%, black 0%);
+            mask-size: 0% 100%;
+            mask-repeat: no-repeat;
+            animation: draw 3s forwards ease-in-out;
+        }
+
+        @keyframes draw { to { mask-size: 100% 100%; } }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 18px 45px;
+            background-color: var(--accent-main);
+            color: white;
+            text-decoration: none;
+            text-transform: lowercase;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        /* Правая карточка: Аватар */
+        .hero-image-card {
+            flex: 1;
+            background: #e0e0e0;
+        }
+
+        .full-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Футер */
+        footer {
+            position: fixed;
+            bottom: 20px; left: 50px;
+            font-size: 0.8rem;
+            color: rgba(0,0,0,0.4);
+            z-index: 100;
+        }
+
+        /* МОБИЛЬНАЯ ВЕРСИЯ */
+        @media (max-width: 768px) {
+            header { padding: 15px; justify-content: center; background: white; }
+            .hero-section { flex-direction: column; height: auto; }
+            
+            .hero-image-card {
+                width: 100%;
+                height: 60vh; /* Аватар сверху */
+            }
+            
+            .hero-info-card {
+                width: 100%;
+                padding: 40px 20px;
+                box-sizing: border-box;
+            }
+
+            .fio { font-size: 2rem; }
+            .tagline { font-size: 0.9rem; letter-spacing: 0.2em; }
+            footer { position: static; padding: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#blog">блог</a>
+            <a href="#appointment">запись</a>
+        </nav>
+    </header>
+
+    <section class="hero-section">
         <div class="hero-info-card">
-            <video autoplay muted loop playsinline class="hero-video-bg">
-                <source src="your-video.mp4" type="video/mp4">
+            <video autoplay muted loop playsinline class="video-background">
+                <source src="video.mp4" type="video/mp4">
             </video>
             
             <div class="info-content">
                 <h1 class="fio">Соломаха<br>Сергей Сергеевич</h1>
-                <p class="specialization">гинеколог-хирург, онколог</p>
-                <p class="city">город Санкт-Петербург</p>
+                <p class="spec-city">гинеколог-хирург, онколог, город Санкт-Петербург</p>
                 
                 <div class="tagline">
                     <span>smart</span> • <span>safe</span> • <span>soft</span>
                 </div>
                 
-                <div class="appeal-box">
-                    <p class="appeal-text">Хирург и оперативные вмешательства, которые он выполняет должны быть умными, безопасными и щадящими для пациента.</p>
-                    <div class="signature-wrapper">
-                        <img src="signature.png" alt="Подпись" class="signature-animated">
-                    </div>
+                <div class="appeal-text">
+                    Выбор хирурга — сложная задача.
+                    
+                    Моя задача — ваше спокойствие, 
+                    уверенность, эстетика и качество жизни.
+                    
+                    Определенность в деталях.
+                    
+                    Ваш хирург. Ваш результат.
+                </div>
+
+                <div class="signature-wrapper">
+                    <img src="signature.png" alt="Подпись" class="signature-animated">
                 </div>
                 
                 <a href="#appointment" class="btn-primary">запись на прием</a>
@@ -29,120 +202,11 @@
         <div class="hero-image-card">
             <img src="avatar.jpg" alt="Сергей Сергеевич Соломаха" class="full-avatar">
         </div>
-        
-    </div>
-</section>
+    </section>
 
-<style>
-:root {
-    --bg-light-gray: #f4f4f4;
-    --text-anthracite: #2f2f2f;
-    --accent-main: #5b6d7e; /* Твой основной цвет */
-}
+    <footer>
+        Сайт находится в разработке © 2024 Все права защищены
+    </footer>
 
-/* Общая структура 50/50 */
-.hero-container {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-}
-
-/* Левый блок */
-.hero-info-card {
-    flex: 1;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 5%;
-}
-
-.hero-video-bg {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    object-fit: cover;
-    z-index: 1;
-}
-
-.info-content {
-    position: relative;
-    z-index: 2;
-    color: var(--text-anthracite);
-    width: 100%;
-}
-
-.fio { font-size: clamp(2rem, 4vw, 3.5rem); text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
-.specialization { font-size: 1.2rem; opacity: 0.9; }
-.city { font-size: 1.1rem; margin-bottom: 30px; font-weight: 300; }
-
-.tagline {
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    margin: 30px 0;
-    padding: 20px 0;
-    border-top: 1px solid rgba(47, 47, 47, 0.2);
-    border-bottom: 1px solid rgba(47, 47, 47, 0.2);
-    display: flex;
-    justify-content: space-between;
-}
-
-.appeal-box { margin-bottom: 40px; position: relative; }
-.appeal-text { font-size: 1.1rem; line-height: 1.6; max-width: 90%; }
-
-/* Анимация подписи слева направо */
-.signature-wrapper {
-    margin-top: 15px;
-    width: 180px; /* Масштаб подписи */
-}
-
-.signature-animated {
-    width: 100%;
-    height: auto;
-    display: block;
-    -webkit-mask-image: linear-gradient(to right, black 0%, black 0%);
-    mask-image: linear-gradient(to right, black 0%, black 0%);
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    animation: drawSignature 3s forwards ease-in-out;
-}
-
-@keyframes drawSignature {
-    0% { -webkit-mask-size: 0% 100%; mask-size: 0% 100%; }
-    100% { -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
-}
-
-/* Кнопка */
-.btn-primary {
-    display: inline-block;
-    padding: 18px 40px;
-    background-color: var(--accent-main);
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s ease;
-}
-
-/* Правый блок: Фото */
-.hero-image-card {
-    flex: 1;
-    overflow: hidden;
-    background-color: #e8e8e8;
-}
-
-.full-avatar {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Мобильная адаптация */
-@media (max-width: 768px) {
-    .hero-container { flex-direction: column; height: auto; }
-    .hero-image-card { width: 100%; height: 60vh; order: 1; }
-    .hero-info-card { width: 100%; padding: 40px 20px; order: 2; }
-    .fio { font-size: 2.2rem; }
-}
-</style>
+</body>
+</html>
